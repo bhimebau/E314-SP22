@@ -1,0 +1,8 @@
+1.) Add command stubs
+temp
+battery
+tsl237
+
+2.) Open the ioc file and add the timer channel, battery, temp channels
+
+

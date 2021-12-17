@@ -1,2 +1,2 @@
-# Spring-2022
-Embedded Systems Class Repository
+# Spring-2020
+Class repository for spring running of embedded systems

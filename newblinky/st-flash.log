@@ -1,0 +1,12 @@
+2019-02-08T15:55:45 INFO src/common.c: Loading device parameters....
+2019-02-08T15:55:45 INFO src/common.c: Device connected is: L43x device, id 0x10016435
+2019-02-08T15:55:45 INFO src/common.c: SRAM size: 0xc000 bytes (48 KiB), Flash: 0x40000 bytes (256 KiB) in pages of 2048 bytes
+2019-02-08T15:55:45 INFO src/common.c: Attempting to write 8544 (0x2160) bytes to stm32 address: 134217728 (0x8000000)
+EraseFlash - Page:0x0 Size:0x800 st-flash 1.3.1-19-g55c0572
+Flash page at addr: 0x08000000 erasedEraseFlash - Page:0x1 Size:0x800 Flash page at addr: 0x08000800 erasedEraseFlash - Page:0x2 Size:0x800 Flash page at addr: 0x08001000 erasedEraseFlash - Page:0x3 Size:0x800 Flash page at addr: 0x08001800 erasedEraseFlash - Page:0x4 Size:0x800 Flash page at addr: 0x08002000 erased2019-02-08T15:55:45 INFO src/common.c: Finished erasing 5 pages of 2048 (0x800) bytes
+2019-02-08T15:55:45 INFO src/common.c: Starting Flash write for F2/F4/L4
+2019-02-08T15:55:45 INFO src/flash_loader.c: Successfully loaded flash loader in sram
+2019-02-08T15:55:46 INFO src/common.c: Starting verification of write complete
+2019-02-08T15:55:46 INFO src/common.c: Flash written and verified! jolly good!
+
+size: 8544

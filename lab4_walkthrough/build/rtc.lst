@@ -1,0 +1,459 @@
+ARM GAS  /tmp/ccq4NKmx.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"rtc.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.rodata.ds_command.str1.4,"aMS",%progbits,1
+  18              		.align	2
+  19              	.LC0:
+  20 0000 41626F75 		.ascii	"About to set the date\012\015\000"
+  20      7420746F 
+  20      20736574 
+  20      20746865 
+  20      20646174 
+  21              		.section	.text.ds_command,"ax",%progbits
+  22              		.align	1
+  23              		.global	ds_command
+  24              		.arch armv7e-m
+  25              		.syntax unified
+  26              		.thumb
+  27              		.thumb_func
+  28              		.fpu fpv4-sp-d16
+  30              	ds_command:
+  31              	.LVL0:
+  32              	.LFB135:
+  33              		.file 1 "Core/Src/rtc.c"
+   1:Core/Src/rtc.c **** /* rtc.c
+   2:Core/Src/rtc.c ****  * Description: 
+   3:Core/Src/rtc.c ****  *
+   4:Core/Src/rtc.c ****  * Author: Bryce Himebaugh 
+   5:Core/Src/rtc.c ****  * Contact: bhimebau@indiana.edu
+   6:Core/Src/rtc.c ****  * Date: 02.25.2021
+   7:Core/Src/rtc.c ****  * Copyright (C) 2021
+   8:Core/Src/rtc.c ****  *
+   9:Core/Src/rtc.c ****  */
+  10:Core/Src/rtc.c **** 
+  11:Core/Src/rtc.c **** #include "main.h"
+  12:Core/Src/rtc.c **** #include <stdio.h>
+  13:Core/Src/rtc.c **** #include <stdlib.h>
+  14:Core/Src/rtc.c **** #include <string.h>
+  15:Core/Src/rtc.c **** 
+  16:Core/Src/rtc.c **** extern RTC_HandleTypeDef hrtc;
+  17:Core/Src/rtc.c **** 
+  18:Core/Src/rtc.c **** 
+  19:Core/Src/rtc.c **** void ds_command(char * arguments) {
+  34              		.loc 1 19 35 view -0
+  35              		.cfi_startproc
+ARM GAS  /tmp/ccq4NKmx.s 			page 2
+
+
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		.loc 1 19 35 is_stmt 0 view .LVU1
+  39 0000 08B5     		push	{r3, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 3, -8
+  43              		.cfi_offset 14, -4
+  20:Core/Src/rtc.c ****   printf("About to set the date\n\r"); 
+  44              		.loc 1 20 3 is_stmt 1 view .LVU2
+  45 0002 0248     		ldr	r0, .L3
+  46              	.LVL1:
+  47              		.loc 1 20 3 is_stmt 0 view .LVU3
+  48 0004 FFF7FEFF 		bl	printf
+  49              	.LVL2:
+  21:Core/Src/rtc.c **** }
+  50              		.loc 1 21 1 view .LVU4
+  51 0008 08BD     		pop	{r3, pc}
+  52              	.L4:
+  53 000a 00BF     		.align	2
+  54              	.L3:
+  55 000c 00000000 		.word	.LC0
+  56              		.cfi_endproc
+  57              	.LFE135:
+  59              		.section	.rodata.ts_command.str1.4,"aMS",%progbits,1
+  60              		.align	2
+  61              	.LC1:
+  62 0000 4E4F4B0A 		.ascii	"NOK\012\015\000"
+  62      0D00
+  63 0006 0000     		.align	2
+  64              	.LC2:
+  65 0008 2C00     		.ascii	",\000"
+  66 000a 0000     		.align	2
+  67              	.LC3:
+  68 000c 4F4B0A0D 		.ascii	"OK\012\015\000"
+  68      00
+  69              		.section	.text.ts_command,"ax",%progbits
+  70              		.align	1
+  71              		.global	ts_command
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu fpv4-sp-d16
+  77              	ts_command:
+  78              	.LVL3:
+  79              	.LFB136:
+  22:Core/Src/rtc.c **** 
+  23:Core/Src/rtc.c **** void ts_command(char * arguments) {
+  80              		.loc 1 23 35 is_stmt 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 24
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		.loc 1 23 35 is_stmt 0 view .LVU6
+  85 0000 10B5     		push	{r4, lr}
+  86              	.LCFI1:
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 4, -8
+ARM GAS  /tmp/ccq4NKmx.s 			page 3
+
+
+  89              		.cfi_offset 14, -4
+  90 0002 86B0     		sub	sp, sp, #24
+  91              	.LCFI2:
+  92              		.cfi_def_cfa_offset 32
+  24:Core/Src/rtc.c ****   RTC_TimeTypeDef current_time;
+  93              		.loc 1 24 3 is_stmt 1 view .LVU7
+  25:Core/Src/rtc.c ****   char * argument;
+  94              		.loc 1 25 3 view .LVU8
+  26:Core/Src/rtc.c ****   int argument_count = 0;
+  95              		.loc 1 26 3 view .LVU9
+  96              	.LVL4:
+  27:Core/Src/rtc.c ****   
+  28:Core/Src/rtc.c ****   if (!arguments) {
+  97              		.loc 1 28 3 view .LVU10
+  98              		.loc 1 28 6 is_stmt 0 view .LVU11
+  99 0004 28B1     		cbz	r0, .L19
+  29:Core/Src/rtc.c ****     printf("NOK\n\r");
+  30:Core/Src/rtc.c ****     return;
+  31:Core/Src/rtc.c ****   }
+  32:Core/Src/rtc.c ****   argument = strtok(arguments,",");
+ 100              		.loc 1 32 3 is_stmt 1 view .LVU12
+ 101              		.loc 1 32 14 is_stmt 0 view .LVU13
+ 102 0006 2E49     		ldr	r1, .L25
+ 103 0008 FFF7FEFF 		bl	strtok
+ 104              	.LVL5:
+  33:Core/Src/rtc.c ****   if (!argument) {
+ 105              		.loc 1 33 3 is_stmt 1 view .LVU14
+ 106              		.loc 1 33 6 is_stmt 0 view .LVU15
+ 107 000c 28B1     		cbz	r0, .L20
+  26:Core/Src/rtc.c ****   
+ 108              		.loc 1 26 7 view .LVU16
+ 109 000e 0024     		movs	r4, #0
+ 110 0010 15E0     		b	.L8
+ 111              	.LVL6:
+ 112              	.L19:
+  29:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 113              		.loc 1 29 5 is_stmt 1 view .LVU17
+ 114 0012 2C48     		ldr	r0, .L25+4
+ 115              	.LVL7:
+  29:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 116              		.loc 1 29 5 is_stmt 0 view .LVU18
+ 117 0014 FFF7FEFF 		bl	printf
+ 118              	.LVL8:
+  30:Core/Src/rtc.c ****   }
+ 119              		.loc 1 30 5 is_stmt 1 view .LVU19
+ 120 0018 3FE0     		b	.L5
+ 121              	.LVL9:
+ 122              	.L20:
+  34:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 123              		.loc 1 34 5 view .LVU20
+ 124 001a 2A48     		ldr	r0, .L25+4
+ 125              	.LVL10:
+ 126              		.loc 1 34 5 is_stmt 0 view .LVU21
+ 127 001c FFF7FEFF 		bl	printf
+ 128              	.LVL11:
+  35:Core/Src/rtc.c ****     return;
+ 129              		.loc 1 35 5 is_stmt 1 view .LVU22
+ARM GAS  /tmp/ccq4NKmx.s 			page 4
+
+
+ 130 0020 3BE0     		b	.L5
+ 131              	.LVL12:
+ 132              	.L23:
+  36:Core/Src/rtc.c ****   }
+  37:Core/Src/rtc.c ****   while (argument) {
+  38:Core/Src/rtc.c ****     //    printf("%d: %s\n\r",argument_count,argument);
+  39:Core/Src/rtc.c ****     switch (argument_count) {
+  40:Core/Src/rtc.c ****     case 0:
+  41:Core/Src/rtc.c ****       current_time.Hours = (int) strtol(argument,NULL,10);
+ 133              		.loc 1 41 7 view .LVU23
+ 134              		.loc 1 41 34 is_stmt 0 view .LVU24
+ 135 0022 0A22     		movs	r2, #10
+ 136 0024 0021     		movs	r1, #0
+ 137 0026 FFF7FEFF 		bl	strtol
+ 138              	.LVL13:
+ 139              		.loc 1 41 26 view .LVU25
+ 140 002a C0B2     		uxtb	r0, r0
+ 141 002c 8DF80400 		strb	r0, [sp, #4]
+  42:Core/Src/rtc.c ****       if ((current_time.Hours<0)||(current_time.Hours>23)) {
+ 142              		.loc 1 42 7 is_stmt 1 view .LVU26
+ 143              		.loc 1 42 10 is_stmt 0 view .LVU27
+ 144 0030 1728     		cmp	r0, #23
+ 145 0032 0FD8     		bhi	.L21
+ 146              	.L12:
+  43:Core/Src/rtc.c ****         printf("NOK\n\r");
+  44:Core/Src/rtc.c ****         return;
+  45:Core/Src/rtc.c ****       }
+  46:Core/Src/rtc.c ****       break;
+  47:Core/Src/rtc.c ****     case 1:
+  48:Core/Src/rtc.c ****       current_time.Minutes = (int) strtol(argument,NULL,10);
+  49:Core/Src/rtc.c ****       if ((current_time.Minutes<0)||(current_time.Minutes>59)) {
+  50:Core/Src/rtc.c ****         printf("NOK\n\r");
+  51:Core/Src/rtc.c ****         return;
+  52:Core/Src/rtc.c ****       }
+  53:Core/Src/rtc.c ****       break;
+  54:Core/Src/rtc.c ****     case 2:
+  55:Core/Src/rtc.c ****       current_time.Seconds = (int) strtol(argument,NULL,10);
+  56:Core/Src/rtc.c ****       if ((current_time.Seconds<0)||(current_time.Seconds>59)) {
+  57:Core/Src/rtc.c ****         printf("NOK\n\r");
+  58:Core/Src/rtc.c ****         return;
+  59:Core/Src/rtc.c ****       }
+  60:Core/Src/rtc.c ****       break;
+  61:Core/Src/rtc.c ****     default:
+  62:Core/Src/rtc.c ****       printf("NOK\n\r");
+  63:Core/Src/rtc.c ****       break;
+  64:Core/Src/rtc.c ****     }
+  65:Core/Src/rtc.c ****     argument_count++;
+ 147              		.loc 1 65 5 is_stmt 1 view .LVU28
+ 148              		.loc 1 65 19 is_stmt 0 view .LVU29
+ 149 0034 0134     		adds	r4, r4, #1
+ 150              	.LVL14:
+  66:Core/Src/rtc.c ****     argument=strtok(NULL,",");
+ 151              		.loc 1 66 5 is_stmt 1 view .LVU30
+ 152              		.loc 1 66 14 is_stmt 0 view .LVU31
+ 153 0036 2249     		ldr	r1, .L25
+ 154 0038 0020     		movs	r0, #0
+ 155 003a FFF7FEFF 		bl	strtok
+ARM GAS  /tmp/ccq4NKmx.s 			page 5
+
+
+ 156              	.LVL15:
+ 157              	.L8:
+  37:Core/Src/rtc.c ****     //    printf("%d: %s\n\r",argument_count,argument);
+ 158              		.loc 1 37 9 is_stmt 1 view .LVU32
+ 159 003e 38B3     		cbz	r0, .L22
+  39:Core/Src/rtc.c ****     case 0:
+ 160              		.loc 1 39 5 view .LVU33
+ 161 0040 012C     		cmp	r4, #1
+ 162 0042 0BD0     		beq	.L9
+ 163 0044 022C     		cmp	r4, #2
+ 164 0046 16D0     		beq	.L10
+ 165 0048 002C     		cmp	r4, #0
+ 166 004a EAD0     		beq	.L23
+  62:Core/Src/rtc.c ****       break;
+ 167              		.loc 1 62 7 view .LVU34
+ 168 004c 1D48     		ldr	r0, .L25+4
+ 169              	.LVL16:
+  62:Core/Src/rtc.c ****       break;
+ 170              		.loc 1 62 7 is_stmt 0 view .LVU35
+ 171 004e FFF7FEFF 		bl	printf
+ 172              	.LVL17:
+  63:Core/Src/rtc.c ****     }
+ 173              		.loc 1 63 7 is_stmt 1 view .LVU36
+ 174 0052 EFE7     		b	.L12
+ 175              	.L21:
+  43:Core/Src/rtc.c ****         return;
+ 176              		.loc 1 43 9 view .LVU37
+ 177 0054 1B48     		ldr	r0, .L25+4
+ 178 0056 FFF7FEFF 		bl	printf
+ 179              	.LVL18:
+  44:Core/Src/rtc.c ****       }
+ 180              		.loc 1 44 9 view .LVU38
+ 181 005a 1EE0     		b	.L5
+ 182              	.LVL19:
+ 183              	.L9:
+  48:Core/Src/rtc.c ****       if ((current_time.Minutes<0)||(current_time.Minutes>59)) {
+ 184              		.loc 1 48 7 view .LVU39
+  48:Core/Src/rtc.c ****       if ((current_time.Minutes<0)||(current_time.Minutes>59)) {
+ 185              		.loc 1 48 36 is_stmt 0 view .LVU40
+ 186 005c 0A22     		movs	r2, #10
+ 187 005e 0021     		movs	r1, #0
+ 188 0060 FFF7FEFF 		bl	strtol
+ 189              	.LVL20:
+  48:Core/Src/rtc.c ****       if ((current_time.Minutes<0)||(current_time.Minutes>59)) {
+ 190              		.loc 1 48 28 view .LVU41
+ 191 0064 C0B2     		uxtb	r0, r0
+ 192 0066 8DF80500 		strb	r0, [sp, #5]
+  49:Core/Src/rtc.c ****         printf("NOK\n\r");
+ 193              		.loc 1 49 7 is_stmt 1 view .LVU42
+  49:Core/Src/rtc.c ****         printf("NOK\n\r");
+ 194              		.loc 1 49 10 is_stmt 0 view .LVU43
+ 195 006a 3B28     		cmp	r0, #59
+ 196 006c E2D9     		bls	.L12
+  50:Core/Src/rtc.c ****         return;
+ 197              		.loc 1 50 9 is_stmt 1 view .LVU44
+ 198 006e 1548     		ldr	r0, .L25+4
+ 199 0070 FFF7FEFF 		bl	printf
+ARM GAS  /tmp/ccq4NKmx.s 			page 6
+
+
+ 200              	.LVL21:
+  51:Core/Src/rtc.c ****       }
+ 201              		.loc 1 51 9 view .LVU45
+ 202 0074 11E0     		b	.L5
+ 203              	.LVL22:
+ 204              	.L10:
+  55:Core/Src/rtc.c ****       if ((current_time.Seconds<0)||(current_time.Seconds>59)) {
+ 205              		.loc 1 55 7 view .LVU46
+  55:Core/Src/rtc.c ****       if ((current_time.Seconds<0)||(current_time.Seconds>59)) {
+ 206              		.loc 1 55 36 is_stmt 0 view .LVU47
+ 207 0076 0A22     		movs	r2, #10
+ 208 0078 0021     		movs	r1, #0
+ 209 007a FFF7FEFF 		bl	strtol
+ 210              	.LVL23:
+  55:Core/Src/rtc.c ****       if ((current_time.Seconds<0)||(current_time.Seconds>59)) {
+ 211              		.loc 1 55 28 view .LVU48
+ 212 007e C0B2     		uxtb	r0, r0
+ 213 0080 8DF80600 		strb	r0, [sp, #6]
+  56:Core/Src/rtc.c ****         printf("NOK\n\r");
+ 214              		.loc 1 56 7 is_stmt 1 view .LVU49
+  56:Core/Src/rtc.c ****         printf("NOK\n\r");
+ 215              		.loc 1 56 10 is_stmt 0 view .LVU50
+ 216 0084 3B28     		cmp	r0, #59
+ 217 0086 D5D9     		bls	.L12
+  57:Core/Src/rtc.c ****         return;
+ 218              		.loc 1 57 9 is_stmt 1 view .LVU51
+ 219 0088 0E48     		ldr	r0, .L25+4
+ 220 008a FFF7FEFF 		bl	printf
+ 221              	.LVL24:
+  58:Core/Src/rtc.c ****       }
+ 222              		.loc 1 58 9 view .LVU52
+ 223 008e 04E0     		b	.L5
+ 224              	.LVL25:
+ 225              	.L22:
+  67:Core/Src/rtc.c ****     
+  68:Core/Src/rtc.c ****   }
+  69:Core/Src/rtc.c ****   if (argument_count != 3) {
+ 226              		.loc 1 69 3 view .LVU53
+ 227              		.loc 1 69 6 is_stmt 0 view .LVU54
+ 228 0090 032C     		cmp	r4, #3
+ 229 0092 04D0     		beq	.L14
+  70:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 230              		.loc 1 70 5 is_stmt 1 view .LVU55
+ 231 0094 0B48     		ldr	r0, .L25+4
+ 232              	.LVL26:
+ 233              		.loc 1 70 5 is_stmt 0 view .LVU56
+ 234 0096 FFF7FEFF 		bl	printf
+ 235              	.LVL27:
+  71:Core/Src/rtc.c ****     return;
+ 236              		.loc 1 71 5 is_stmt 1 view .LVU57
+ 237              	.L5:
+  72:Core/Src/rtc.c ****   }
+  73:Core/Src/rtc.c ****   current_time.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  74:Core/Src/rtc.c ****   current_time.StoreOperation = RTC_STOREOPERATION_RESET;
+  75:Core/Src/rtc.c ****   if (HAL_RTC_SetTime(&hrtc, &current_time, RTC_FORMAT_BIN) != HAL_OK) {
+  76:Core/Src/rtc.c ****     printf("NOK\n\r");
+  77:Core/Src/rtc.c ****     return;
+ARM GAS  /tmp/ccq4NKmx.s 			page 7
+
+
+  78:Core/Src/rtc.c ****   }
+  79:Core/Src/rtc.c ****   printf("OK\n\r");
+  80:Core/Src/rtc.c **** }
+ 238              		.loc 1 80 1 is_stmt 0 view .LVU58
+ 239 009a 06B0     		add	sp, sp, #24
+ 240              	.LCFI3:
+ 241              		.cfi_remember_state
+ 242              		.cfi_def_cfa_offset 8
+ 243              		@ sp needed
+ 244 009c 10BD     		pop	{r4, pc}
+ 245              	.LVL28:
+ 246              	.L14:
+ 247              	.LCFI4:
+ 248              		.cfi_restore_state
+  73:Core/Src/rtc.c ****   current_time.StoreOperation = RTC_STOREOPERATION_RESET;
+ 249              		.loc 1 73 3 is_stmt 1 view .LVU59
+  73:Core/Src/rtc.c ****   current_time.StoreOperation = RTC_STOREOPERATION_RESET;
+ 250              		.loc 1 73 31 is_stmt 0 view .LVU60
+ 251 009e 0022     		movs	r2, #0
+ 252 00a0 0492     		str	r2, [sp, #16]
+  74:Core/Src/rtc.c ****   if (HAL_RTC_SetTime(&hrtc, &current_time, RTC_FORMAT_BIN) != HAL_OK) {
+ 253              		.loc 1 74 3 is_stmt 1 view .LVU61
+  74:Core/Src/rtc.c ****   if (HAL_RTC_SetTime(&hrtc, &current_time, RTC_FORMAT_BIN) != HAL_OK) {
+ 254              		.loc 1 74 31 is_stmt 0 view .LVU62
+ 255 00a2 0592     		str	r2, [sp, #20]
+  75:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 256              		.loc 1 75 3 is_stmt 1 view .LVU63
+  75:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 257              		.loc 1 75 7 is_stmt 0 view .LVU64
+ 258 00a4 01A9     		add	r1, sp, #4
+ 259 00a6 0848     		ldr	r0, .L25+8
+ 260              	.LVL29:
+  75:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 261              		.loc 1 75 7 view .LVU65
+ 262 00a8 FFF7FEFF 		bl	HAL_RTC_SetTime
+ 263              	.LVL30:
+  75:Core/Src/rtc.c ****     printf("NOK\n\r");
+ 264              		.loc 1 75 6 view .LVU66
+ 265 00ac 18B9     		cbnz	r0, .L24
+  79:Core/Src/rtc.c **** }
+ 266              		.loc 1 79 3 is_stmt 1 view .LVU67
+ 267 00ae 0748     		ldr	r0, .L25+12
+ 268 00b0 FFF7FEFF 		bl	printf
+ 269              	.LVL31:
+ 270 00b4 F1E7     		b	.L5
+ 271              	.L24:
+  76:Core/Src/rtc.c ****     return;
+ 272              		.loc 1 76 5 view .LVU68
+ 273 00b6 0348     		ldr	r0, .L25+4
+ 274 00b8 FFF7FEFF 		bl	printf
+ 275              	.LVL32:
+  77:Core/Src/rtc.c ****   }
+ 276              		.loc 1 77 5 view .LVU69
+ 277 00bc EDE7     		b	.L5
+ 278              	.L26:
+ 279 00be 00BF     		.align	2
+ 280              	.L25:
+ARM GAS  /tmp/ccq4NKmx.s 			page 8
+
+
+ 281 00c0 08000000 		.word	.LC2
+ 282 00c4 00000000 		.word	.LC1
+ 283 00c8 00000000 		.word	hrtc
+ 284 00cc 0C000000 		.word	.LC3
+ 285              		.cfi_endproc
+ 286              	.LFE136:
+ 288              		.text
+ 289              	.Letext0:
+ 290              		.file 2 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_
+ 291              		.file 3 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdi
+ 292              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
+ 293              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 294              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h"
+ 295              		.file 7 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/string.h"
+ 296              		.file 8 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/stdio.h"
+ 297              		.file 9 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/stdlib.h"
+ARM GAS  /tmp/ccq4NKmx.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 rtc.c
+     /tmp/ccq4NKmx.s:18     .rodata.ds_command.str1.4:0000000000000000 $d
+     /tmp/ccq4NKmx.s:22     .text.ds_command:0000000000000000 $t
+     /tmp/ccq4NKmx.s:30     .text.ds_command:0000000000000000 ds_command
+     /tmp/ccq4NKmx.s:55     .text.ds_command:000000000000000c $d
+     /tmp/ccq4NKmx.s:60     .rodata.ts_command.str1.4:0000000000000000 $d
+     /tmp/ccq4NKmx.s:70     .text.ts_command:0000000000000000 $t
+     /tmp/ccq4NKmx.s:77     .text.ts_command:0000000000000000 ts_command
+     /tmp/ccq4NKmx.s:281    .text.ts_command:00000000000000c0 $d
+
+UNDEFINED SYMBOLS
+printf
+strtok
+strtol
+HAL_RTC_SetTime
+hrtc

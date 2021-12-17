@@ -1,0 +1,394 @@
+ARM GAS  /tmp/ccEhZpdh.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"battery.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.read_vrefint,"ax",%progbits
+  18              		.align	1
+  19              		.global	read_vrefint
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	read_vrefint:
+  27              	.LFB292:
+  28              		.file 1 "Core/Src/battery.c"
+   1:Core/Src/battery.c **** /* battery.c
+   2:Core/Src/battery.c ****  * Description: 
+   3:Core/Src/battery.c ****  *
+   4:Core/Src/battery.c ****  * Author: Bryce Himebaugh 
+   5:Core/Src/battery.c ****  * Contact: bhimebau@indiana.edu
+   6:Core/Src/battery.c ****  * Date: 06. 4.2019
+   7:Core/Src/battery.c ****  * Copyright (C) 2019
+   8:Core/Src/battery.c ****  *
+   9:Core/Src/battery.c ****  */
+  10:Core/Src/battery.c **** 
+  11:Core/Src/battery.c **** #include "main.h"
+  12:Core/Src/battery.c **** #include <string.h>
+  13:Core/Src/battery.c **** #include <stdio.h>
+  14:Core/Src/battery.c **** #include "battery.h"
+  15:Core/Src/battery.c **** 
+  16:Core/Src/battery.c **** extern ADC_HandleTypeDef hadc1;
+  17:Core/Src/battery.c **** 
+  18:Core/Src/battery.c **** void batt_command(char *arguments) {
+  19:Core/Src/battery.c ****   uint32_t battery_voltage;
+  20:Core/Src/battery.c ****   if (arguments) {
+  21:Core/Src/battery.c ****     printf("NOK\n\r");
+  22:Core/Src/battery.c ****   }
+  23:Core/Src/battery.c ****   else {
+  24:Core/Src/battery.c ****     battery_voltage = read_vrefint();
+  25:Core/Src/battery.c ****     printf("%d.%03d\n\r",(int)battery_voltage/1000,(int)battery_voltage%1000);
+  26:Core/Src/battery.c ****     printf("OK\n\r");
+  27:Core/Src/battery.c ****   }
+  28:Core/Src/battery.c **** }
+  29:Core/Src/battery.c **** 
+  30:Core/Src/battery.c **** uint32_t read_vrefint(void) {
+ARM GAS  /tmp/ccEhZpdh.s 			page 2
+
+
+  29              		.loc 1 30 29 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 3, -16
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 14, -4
+  31:Core/Src/battery.c ****   static uint32_t first_time_up = 1;
+  40              		.loc 1 31 3 view .LVU1
+  32:Core/Src/battery.c ****   static ADC_ChannelConfTypeDef sConfig = {0};
+  41              		.loc 1 32 3 view .LVU2
+  33:Core/Src/battery.c ****   uint32_t rawVintref;
+  42              		.loc 1 33 3 view .LVU3
+  34:Core/Src/battery.c **** 
+  35:Core/Src/battery.c ****   if (first_time_up) {
+  43              		.loc 1 35 3 view .LVU4
+  44              		.loc 1 35 7 is_stmt 0 view .LVU5
+  45 0002 224B     		ldr	r3, .L9
+  46 0004 1B68     		ldr	r3, [r3]
+  47              		.loc 1 35 6 view .LVU6
+  48 0006 6BB1     		cbz	r3, .L2
+  36:Core/Src/battery.c ****     sConfig.Channel = ADC_CHANNEL_VREFINT;
+  49              		.loc 1 36 5 is_stmt 1 view .LVU7
+  50              		.loc 1 36 21 is_stmt 0 view .LVU8
+  51 0008 214B     		ldr	r3, .L9+4
+  52 000a 224A     		ldr	r2, .L9+8
+  53 000c 1A60     		str	r2, [r3]
+  37:Core/Src/battery.c ****     sConfig.Rank = ADC_REGULAR_RANK_1;
+  54              		.loc 1 37 5 is_stmt 1 view .LVU9
+  55              		.loc 1 37 18 is_stmt 0 view .LVU10
+  56 000e 0622     		movs	r2, #6
+  57 0010 5A60     		str	r2, [r3, #4]
+  38:Core/Src/battery.c ****     sConfig.SamplingTime = ADC_SAMPLETIME_47CYCLES_5;
+  58              		.loc 1 38 5 is_stmt 1 view .LVU11
+  59              		.loc 1 38 26 is_stmt 0 view .LVU12
+  60 0012 0422     		movs	r2, #4
+  61 0014 9A60     		str	r2, [r3, #8]
+  39:Core/Src/battery.c ****     sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  62              		.loc 1 39 5 is_stmt 1 view .LVU13
+  63              		.loc 1 39 24 is_stmt 0 view .LVU14
+  64 0016 7F21     		movs	r1, #127
+  65 0018 D960     		str	r1, [r3, #12]
+  40:Core/Src/battery.c ****     sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  66              		.loc 1 40 5 is_stmt 1 view .LVU15
+  67              		.loc 1 40 26 is_stmt 0 view .LVU16
+  68 001a 1A61     		str	r2, [r3, #16]
+  41:Core/Src/battery.c ****     sConfig.Offset = 0;
+  69              		.loc 1 41 5 is_stmt 1 view .LVU17
+  70              		.loc 1 41 20 is_stmt 0 view .LVU18
+  71 001c 0022     		movs	r2, #0
+  72 001e 5A61     		str	r2, [r3, #20]
+  42:Core/Src/battery.c ****     first_time_up = 0;
+  73              		.loc 1 42 5 is_stmt 1 view .LVU19
+ARM GAS  /tmp/ccEhZpdh.s 			page 3
+
+
+  74              		.loc 1 42 19 is_stmt 0 view .LVU20
+  75 0020 1A4B     		ldr	r3, .L9
+  76 0022 1A60     		str	r2, [r3]
+  77              	.L2:
+  43:Core/Src/battery.c ****   }
+  44:Core/Src/battery.c ****   sConfig.Rank = ADC_REGULAR_RANK_1;
+  78              		.loc 1 44 3 is_stmt 1 view .LVU21
+  79              		.loc 1 44 16 is_stmt 0 view .LVU22
+  80 0024 1A49     		ldr	r1, .L9+4
+  81 0026 0623     		movs	r3, #6
+  82 0028 4B60     		str	r3, [r1, #4]
+  45:Core/Src/battery.c ****   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK) {
+  83              		.loc 1 45 3 is_stmt 1 view .LVU23
+  84              		.loc 1 45 7 is_stmt 0 view .LVU24
+  85 002a 1B48     		ldr	r0, .L9+12
+  86 002c FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+  87              	.LVL0:
+  88              		.loc 1 45 6 view .LVU25
+  89 0030 30BB     		cbnz	r0, .L7
+  90              	.L4:
+  46:Core/Src/battery.c ****       Error_Handler();
+  47:Core/Src/battery.c ****   }
+  48:Core/Src/battery.c ****   while (HAL_ADCEx_Calibration_Start(&hadc1,ADC_SINGLE_ENDED) != HAL_OK);   // Calibrate the A2D
+  91              		.loc 1 48 73 is_stmt 1 discriminator 1 view .LVU26
+  92              		.loc 1 48 9 discriminator 1 view .LVU27
+  93              		.loc 1 48 10 is_stmt 0 discriminator 1 view .LVU28
+  94 0032 7F21     		movs	r1, #127
+  95 0034 1848     		ldr	r0, .L9+12
+  96 0036 FFF7FEFF 		bl	HAL_ADCEx_Calibration_Start
+  97              	.LVL1:
+  98              		.loc 1 48 9 discriminator 1 view .LVU29
+  99 003a 0028     		cmp	r0, #0
+ 100 003c F9D1     		bne	.L4
+  49:Core/Src/battery.c ****   HAL_ADC_Start(&hadc1); 
+ 101              		.loc 1 49 3 is_stmt 1 view .LVU30
+ 102 003e 164C     		ldr	r4, .L9+12
+ 103 0040 2046     		mov	r0, r4
+ 104 0042 FFF7FEFF 		bl	HAL_ADC_Start
+ 105              	.LVL2:
+  50:Core/Src/battery.c ****   HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+ 106              		.loc 1 50 3 view .LVU31
+ 107 0046 4FF0FF31 		mov	r1, #-1
+ 108 004a 2046     		mov	r0, r4
+ 109 004c FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 110              	.LVL3:
+  51:Core/Src/battery.c ****   rawVintref = HAL_ADC_GetValue(&hadc1);
+ 111              		.loc 1 51 3 view .LVU32
+ 112              		.loc 1 51 16 is_stmt 0 view .LVU33
+ 113 0050 2046     		mov	r0, r4
+ 114 0052 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 115              	.LVL4:
+ 116 0056 0546     		mov	r5, r0
+ 117              	.LVL5:
+  52:Core/Src/battery.c ****   HAL_ADC_Stop(&hadc1);
+ 118              		.loc 1 52 3 is_stmt 1 view .LVU34
+ 119 0058 2046     		mov	r0, r4
+ 120              	.LVL6:
+ARM GAS  /tmp/ccEhZpdh.s 			page 4
+
+
+ 121              		.loc 1 52 3 is_stmt 0 view .LVU35
+ 122 005a FFF7FEFF 		bl	HAL_ADC_Stop
+ 123              	.LVL7:
+  53:Core/Src/battery.c ****   sConfig.Rank = ADC_REGULAR_RANK_2;
+ 124              		.loc 1 53 3 is_stmt 1 view .LVU36
+ 125              		.loc 1 53 16 is_stmt 0 view .LVU37
+ 126 005e 0C49     		ldr	r1, .L9+4
+ 127 0060 0C23     		movs	r3, #12
+ 128 0062 4B60     		str	r3, [r1, #4]
+  54:Core/Src/battery.c ****   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK) {
+ 129              		.loc 1 54 3 is_stmt 1 view .LVU38
+ 130              		.loc 1 54 7 is_stmt 0 view .LVU39
+ 131 0064 2046     		mov	r0, r4
+ 132 0066 FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+ 133              	.LVL8:
+ 134              		.loc 1 54 6 view .LVU40
+ 135 006a 60B9     		cbnz	r0, .L8
+ 136              	.L5:
+  55:Core/Src/battery.c ****       Error_Handler();
+  56:Core/Src/battery.c ****   }
+  57:Core/Src/battery.c ****   return(__HAL_ADC_CALC_VREFANALOG_VOLTAGE(rawVintref, ADC_RESOLUTION_12B));
+ 137              		.loc 1 57 3 is_stmt 1 view .LVU41
+ 138              		.loc 1 57 10 is_stmt 0 view .LVU42
+ 139 006c 0B4B     		ldr	r3, .L9+16
+ 140 006e B3F8AA00 		ldrh	r0, [r3, #170]
+ 141 0072 40F6B833 		movw	r3, #3000
+ 142 0076 03FB00F0 		mul	r0, r3, r0
+  58:Core/Src/battery.c **** }
+ 143              		.loc 1 58 1 view .LVU43
+ 144 007a B0FBF5F0 		udiv	r0, r0, r5
+ 145 007e 38BD     		pop	{r3, r4, r5, pc}
+ 146              	.LVL9:
+ 147              	.L7:
+  46:Core/Src/battery.c ****   }
+ 148              		.loc 1 46 7 is_stmt 1 view .LVU44
+ 149 0080 FFF7FEFF 		bl	Error_Handler
+ 150              	.LVL10:
+ 151 0084 D5E7     		b	.L4
+ 152              	.LVL11:
+ 153              	.L8:
+  55:Core/Src/battery.c ****       Error_Handler();
+ 154              		.loc 1 55 7 view .LVU45
+ 155 0086 FFF7FEFF 		bl	Error_Handler
+ 156              	.LVL12:
+ 157 008a EFE7     		b	.L5
+ 158              	.L10:
+ 159              		.align	2
+ 160              	.L9:
+ 161 008c 00000000 		.word	.LANCHOR0
+ 162 0090 00000000 		.word	.LANCHOR1
+ 163 0094 01000080 		.word	-2147483647
+ 164 0098 00000000 		.word	hadc1
+ 165 009c 0075FF1F 		.word	536835328
+ 166              		.cfi_endproc
+ 167              	.LFE292:
+ 169              		.section	.rodata.batt_command.str1.4,"aMS",%progbits,1
+ 170              		.align	2
+ARM GAS  /tmp/ccEhZpdh.s 			page 5
+
+
+ 171              	.LC0:
+ 172 0000 4E4F4B0A 		.ascii	"NOK\012\015\000"
+ 172      0D00
+ 173 0006 0000     		.align	2
+ 174              	.LC1:
+ 175 0008 25642E25 		.ascii	"%d.%03d\012\015\000"
+ 175      3033640A 
+ 175      0D00
+ 176 0012 0000     		.align	2
+ 177              	.LC2:
+ 178 0014 4F4B0A0D 		.ascii	"OK\012\015\000"
+ 178      00
+ 179              		.section	.text.batt_command,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	batt_command
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 185              		.fpu fpv4-sp-d16
+ 187              	batt_command:
+ 188              	.LVL13:
+ 189              	.LFB291:
+  18:Core/Src/battery.c ****   uint32_t battery_voltage;
+ 190              		.loc 1 18 36 view -0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+  18:Core/Src/battery.c ****   uint32_t battery_voltage;
+ 194              		.loc 1 18 36 is_stmt 0 view .LVU47
+ 195 0000 08B5     		push	{r3, lr}
+ 196              	.LCFI1:
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 3, -8
+ 199              		.cfi_offset 14, -4
+  19:Core/Src/battery.c ****   if (arguments) {
+ 200              		.loc 1 19 3 is_stmt 1 view .LVU48
+  20:Core/Src/battery.c ****     printf("NOK\n\r");
+ 201              		.loc 1 20 3 view .LVU49
+  20:Core/Src/battery.c ****     printf("NOK\n\r");
+ 202              		.loc 1 20 6 is_stmt 0 view .LVU50
+ 203 0002 18B1     		cbz	r0, .L12
+  21:Core/Src/battery.c ****   }
+ 204              		.loc 1 21 5 is_stmt 1 view .LVU51
+ 205 0004 0B48     		ldr	r0, .L15
+ 206              	.LVL14:
+  21:Core/Src/battery.c ****   }
+ 207              		.loc 1 21 5 is_stmt 0 view .LVU52
+ 208 0006 FFF7FEFF 		bl	printf
+ 209              	.LVL15:
+ 210              	.L11:
+  28:Core/Src/battery.c **** 
+ 211              		.loc 1 28 1 view .LVU53
+ 212 000a 08BD     		pop	{r3, pc}
+ 213              	.LVL16:
+ 214              	.L12:
+  24:Core/Src/battery.c ****     printf("%d.%03d\n\r",(int)battery_voltage/1000,(int)battery_voltage%1000);
+ 215              		.loc 1 24 5 is_stmt 1 view .LVU54
+ARM GAS  /tmp/ccEhZpdh.s 			page 6
+
+
+  24:Core/Src/battery.c ****     printf("%d.%03d\n\r",(int)battery_voltage/1000,(int)battery_voltage%1000);
+ 216              		.loc 1 24 23 is_stmt 0 view .LVU55
+ 217 000c FFF7FEFF 		bl	read_vrefint
+ 218              	.LVL17:
+  25:Core/Src/battery.c ****     printf("OK\n\r");
+ 219              		.loc 1 25 5 is_stmt 1 view .LVU56
+ 220 0010 094B     		ldr	r3, .L15+4
+ 221 0012 83FB0023 		smull	r2, r3, r3, r0
+ 222 0016 C117     		asrs	r1, r0, #31
+ 223 0018 C1EBA311 		rsb	r1, r1, r3, asr #6
+ 224 001c 4FF47A72 		mov	r2, #1000
+ 225 0020 02FB1102 		mls	r2, r2, r1, r0
+ 226 0024 0548     		ldr	r0, .L15+8
+ 227              	.LVL18:
+  25:Core/Src/battery.c ****     printf("OK\n\r");
+ 228              		.loc 1 25 5 is_stmt 0 view .LVU57
+ 229 0026 FFF7FEFF 		bl	printf
+ 230              	.LVL19:
+  26:Core/Src/battery.c ****   }
+ 231              		.loc 1 26 5 is_stmt 1 view .LVU58
+ 232 002a 0548     		ldr	r0, .L15+12
+ 233 002c FFF7FEFF 		bl	printf
+ 234              	.LVL20:
+  28:Core/Src/battery.c **** 
+ 235              		.loc 1 28 1 is_stmt 0 view .LVU59
+ 236 0030 EBE7     		b	.L11
+ 237              	.L16:
+ 238 0032 00BF     		.align	2
+ 239              	.L15:
+ 240 0034 00000000 		.word	.LC0
+ 241 0038 D34D6210 		.word	274877907
+ 242 003c 08000000 		.word	.LC1
+ 243 0040 14000000 		.word	.LC2
+ 244              		.cfi_endproc
+ 245              	.LFE291:
+ 247              		.section	.bss.sConfig.0,"aw",%nobits
+ 248              		.align	2
+ 249              		.set	.LANCHOR1,. + 0
+ 252              	sConfig.0:
+ 253 0000 00000000 		.space	24
+ 253      00000000 
+ 253      00000000 
+ 253      00000000 
+ 253      00000000 
+ 254              		.section	.data.first_time_up.1,"aw"
+ 255              		.align	2
+ 256              		.set	.LANCHOR0,. + 0
+ 259              	first_time_up.1:
+ 260 0000 01000000 		.word	1
+ 261              		.text
+ 262              	.Letext0:
+ 263              		.file 2 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_
+ 264              		.file 3 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdi
+ 265              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
+ 266              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h"
+ 267              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 268              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ARM GAS  /tmp/ccEhZpdh.s 			page 7
+
+
+ 269              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_adc.h"
+ 270              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_adc_ex.h"
+ 271              		.file 10 "Core/Inc/main.h"
+ 272              		.file 11 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/stdio.h"
+ARM GAS  /tmp/ccEhZpdh.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 battery.c
+     /tmp/ccEhZpdh.s:18     .text.read_vrefint:0000000000000000 $t
+     /tmp/ccEhZpdh.s:26     .text.read_vrefint:0000000000000000 read_vrefint
+     /tmp/ccEhZpdh.s:161    .text.read_vrefint:000000000000008c $d
+     /tmp/ccEhZpdh.s:170    .rodata.batt_command.str1.4:0000000000000000 $d
+     /tmp/ccEhZpdh.s:180    .text.batt_command:0000000000000000 $t
+     /tmp/ccEhZpdh.s:187    .text.batt_command:0000000000000000 batt_command
+     /tmp/ccEhZpdh.s:240    .text.batt_command:0000000000000034 $d
+     /tmp/ccEhZpdh.s:248    .bss.sConfig.0:0000000000000000 $d
+     /tmp/ccEhZpdh.s:252    .bss.sConfig.0:0000000000000000 sConfig.0
+     /tmp/ccEhZpdh.s:255    .data.first_time_up.1:0000000000000000 $d
+     /tmp/ccEhZpdh.s:259    .data.first_time_up.1:0000000000000000 first_time_up.1
+
+UNDEFINED SYMBOLS
+HAL_ADC_ConfigChannel
+HAL_ADCEx_Calibration_Start
+HAL_ADC_Start
+HAL_ADC_PollForConversion
+HAL_ADC_GetValue
+HAL_ADC_Stop
+Error_Handler
+hadc1
+printf

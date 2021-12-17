@@ -1,0 +1,215 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "STM32 LED Board"
+Date "2021-03-25"
+Rev "R001"
+Comp "Indiana University"
+Comment1 "Bryce Himebaugh"
+Comment2 "Class Example Board"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_ST_STM32L4:STM32L432KCUx U1
+U 1 1 605CEBA0
+P 5650 3250
+F 0 "U1" H 4900 4250 50  0000 C CNN
+F 1 "STM32L432KCUx" H 5150 4150 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm" H 5250 2350 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00257205.pdf" H 5650 3250 50  0001 C CNN
+	1    5650 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 605CFC1F
+P 7300 1850
+F 0 "D1" V 7339 1732 50  0000 R CNN
+F 1 "LED" V 7248 1732 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 7300 1850 50  0001 C CNN
+F 3 "~" H 7300 1850 50  0001 C CNN
+	1    7300 1850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 605D155B
+P 7300 2300
+F 0 "R1" H 7368 2346 50  0000 L CNN
+F 1 "470" H 7368 2255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 7340 2290 50  0001 C CNN
+F 3 "~" H 7300 2300 50  0001 C CNN
+	1    7300 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 605D670E
+P 5650 4600
+F 0 "#PWR02" H 5650 4350 50  0001 C CNN
+F 1 "GND" H 5655 4427 50  0000 C CNN
+F 2 "" H 5650 4600 50  0001 C CNN
+F 3 "" H 5650 4600 50  0001 C CNN
+	1    5650 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR01
+U 1 1 605D72D9
+P 5650 1300
+F 0 "#PWR01" H 5650 1150 50  0001 C CNN
+F 1 "+3.3V" H 5665 1473 50  0000 C CNN
+F 2 "" H 5650 1300 50  0001 C CNN
+F 3 "" H 5650 1300 50  0001 C CNN
+	1    5650 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR03
+U 1 1 605DA94A
+P 7300 1300
+F 0 "#PWR03" H 7300 1150 50  0001 C CNN
+F 1 "+3.3V" H 7315 1473 50  0000 C CNN
+F 2 "" H 7300 1300 50  0001 C CNN
+F 3 "" H 7300 1300 50  0001 C CNN
+	1    7300 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 2550 7300 2550
+Wire Wire Line
+	7300 2550 7300 2450
+Wire Wire Line
+	7300 2150 7300 2000
+Wire Wire Line
+	7300 1700 7300 1300
+Wire Wire Line
+	5650 1300 5650 1950
+Wire Wire Line
+	5750 2350 5750 1950
+Wire Wire Line
+	5750 1950 5650 1950
+Connection ~ 5650 1950
+Wire Wire Line
+	5650 1950 5650 2350
+Wire Wire Line
+	5550 2350 5550 1950
+Wire Wire Line
+	5550 1950 5650 1950
+Wire Wire Line
+	5650 4600 5650 4450
+Wire Wire Line
+	5550 4250 5550 4450
+Wire Wire Line
+	5550 4450 5650 4450
+Connection ~ 5650 4450
+Wire Wire Line
+	5650 4450 5650 4250
+Wire Wire Line
+	5650 4450 5750 4450
+Wire Wire Line
+	5750 4450 5750 4250
+NoConn ~ 5150 2550
+NoConn ~ 5150 2950
+NoConn ~ 5150 3150
+NoConn ~ 5150 3250
+NoConn ~ 5150 3450
+NoConn ~ 5150 3550
+NoConn ~ 5150 3650
+NoConn ~ 5150 3750
+NoConn ~ 5150 3850
+NoConn ~ 5150 3950
+NoConn ~ 5150 4050
+NoConn ~ 6150 4050
+NoConn ~ 6150 3950
+NoConn ~ 6150 3850
+NoConn ~ 6150 3750
+NoConn ~ 6150 3650
+NoConn ~ 6150 3550
+NoConn ~ 6150 3450
+NoConn ~ 6150 3350
+NoConn ~ 6150 3250
+NoConn ~ 6150 3150
+NoConn ~ 6150 3050
+NoConn ~ 6150 2950
+NoConn ~ 6150 2850
+NoConn ~ 6150 2750
+NoConn ~ 6150 2650
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 605E4B46
+P 3600 1800
+F 0 "J1" H 3708 1981 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 3708 1890 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 3600 1800 50  0001 C CNN
+F 3 "~" H 3600 1800 50  0001 C CNN
+	1    3600 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0101
+U 1 1 605E5333
+P 4250 1450
+F 0 "#PWR0101" H 4250 1300 50  0001 C CNN
+F 1 "+3.3V" H 4265 1623 50  0000 C CNN
+F 2 "" H 4250 1450 50  0001 C CNN
+F 3 "" H 4250 1450 50  0001 C CNN
+	1    4250 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 605E58C9
+P 4250 2000
+F 0 "#PWR0102" H 4250 1750 50  0001 C CNN
+F 1 "GND" H 4255 1827 50  0000 C CNN
+F 2 "" H 4250 2000 50  0001 C CNN
+F 3 "" H 4250 2000 50  0001 C CNN
+	1    4250 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 1800 4250 1800
+Wire Wire Line
+	4250 1800 4250 1450
+Wire Wire Line
+	4250 1900 4250 2000
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 605E6FBB
+P 4450 1600
+F 0 "#FLG0101" H 4450 1675 50  0001 C CNN
+F 1 "PWR_FLAG" H 4450 1773 50  0000 C CNN
+F 2 "" H 4450 1600 50  0001 C CNN
+F 3 "~" H 4450 1600 50  0001 C CNN
+	1    4450 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 1600 4450 1800
+Wire Wire Line
+	4450 1800 4250 1800
+Connection ~ 4250 1800
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 605E77FF
+P 4450 2200
+F 0 "#FLG0102" H 4450 2275 50  0001 C CNN
+F 1 "PWR_FLAG" H 4450 2373 50  0000 C CNN
+F 2 "" H 4450 2200 50  0001 C CNN
+F 3 "~" H 4450 2200 50  0001 C CNN
+	1    4450 2200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3800 1900 4250 1900
+Connection ~ 4250 1900
+Wire Wire Line
+	4250 1900 4450 1900
+Wire Wire Line
+	4450 1900 4450 2200
+$EndSCHEMATC

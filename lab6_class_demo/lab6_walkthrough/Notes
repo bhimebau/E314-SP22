@@ -1,0 +1,14 @@
+* Create function to write to the next address in the memory
+
+
+
+* Enable interrupts only to make the period measurement
+* Find the top of flash
+* Write a record in the flash
+* Read record back from flash
+
+
+
+
+
+

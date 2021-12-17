@@ -1,0 +1,267 @@
+ARM GAS  /tmp/ccYqj7rC.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"led.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.lon,"ax",%progbits
+  18              		.align	1
+  19              		.global	lon
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	lon:
+  27              	.LFB135:
+  28              		.file 1 "Core/Src/led.c"
+   1:Core/Src/led.c **** /* led.c
+   2:Core/Src/led.c ****  * Description: 
+   3:Core/Src/led.c ****  *
+   4:Core/Src/led.c ****  * Author: Bryce Himebaugh 
+   5:Core/Src/led.c ****  * Contact: bhimebau@indiana.edu
+   6:Core/Src/led.c ****  * Date: 02.19.2021
+   7:Core/Src/led.c ****  * Copyright (C) 2021
+   8:Core/Src/led.c ****  *
+   9:Core/Src/led.c ****  */
+  10:Core/Src/led.c **** #include "main.h" 
+  11:Core/Src/led.c **** #include <stdio.h>
+  12:Core/Src/led.c **** 
+  13:Core/Src/led.c **** 
+  14:Core/Src/led.c **** void lon(void) {
+  29              		.loc 1 14 16 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  15:Core/Src/led.c ****   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  38              		.loc 1 15 3 view .LVU1
+  39 0002 0122     		movs	r2, #1
+  40 0004 0821     		movs	r1, #8
+  41 0006 0248     		ldr	r0, .L3
+  42 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  43              	.LVL0:
+ARM GAS  /tmp/ccYqj7rC.s 			page 2
+
+
+  16:Core/Src/led.c **** }
+  44              		.loc 1 16 1 is_stmt 0 view .LVU2
+  45 000c 08BD     		pop	{r3, pc}
+  46              	.L4:
+  47 000e 00BF     		.align	2
+  48              	.L3:
+  49 0010 00040048 		.word	1207960576
+  50              		.cfi_endproc
+  51              	.LFE135:
+  53              		.section	.text.lof,"ax",%progbits
+  54              		.align	1
+  55              		.global	lof
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  59              		.fpu fpv4-sp-d16
+  61              	lof:
+  62              	.LFB136:
+  17:Core/Src/led.c **** 
+  18:Core/Src/led.c **** void lof(void) {
+  63              		.loc 1 18 16 is_stmt 1 view -0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67 0000 08B5     		push	{r3, lr}
+  68              	.LCFI1:
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 3, -8
+  71              		.cfi_offset 14, -4
+  19:Core/Src/led.c ****   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  72              		.loc 1 19 3 view .LVU4
+  73 0002 0022     		movs	r2, #0
+  74 0004 0821     		movs	r1, #8
+  75 0006 0248     		ldr	r0, .L7
+  76 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  77              	.LVL1:
+  20:Core/Src/led.c **** }
+  78              		.loc 1 20 1 is_stmt 0 view .LVU5
+  79 000c 08BD     		pop	{r3, pc}
+  80              	.L8:
+  81 000e 00BF     		.align	2
+  82              	.L7:
+  83 0010 00040048 		.word	1207960576
+  84              		.cfi_endproc
+  85              	.LFE136:
+  87              		.section	.rodata.lon_command.str1.4,"aMS",%progbits,1
+  88              		.align	2
+  89              	.LC0:
+  90 0000 4F4B0A0D 		.ascii	"OK\012\015\000"
+  90      00
+  91              		.section	.text.lon_command,"ax",%progbits
+  92              		.align	1
+  93              		.global	lon_command
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  97              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/ccYqj7rC.s 			page 3
+
+
+  99              	lon_command:
+ 100              	.LVL2:
+ 101              	.LFB137:
+  21:Core/Src/led.c **** 
+  22:Core/Src/led.c **** void lon_command(char *arguments) {
+ 102              		.loc 1 22 35 is_stmt 1 view -0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106              		.loc 1 22 35 is_stmt 0 view .LVU7
+ 107 0000 08B5     		push	{r3, lr}
+ 108              	.LCFI2:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+  23:Core/Src/led.c ****   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+ 112              		.loc 1 23 3 is_stmt 1 view .LVU8
+ 113 0002 0122     		movs	r2, #1
+ 114 0004 0821     		movs	r1, #8
+ 115 0006 0348     		ldr	r0, .L11
+ 116              	.LVL3:
+ 117              		.loc 1 23 3 is_stmt 0 view .LVU9
+ 118 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 119              	.LVL4:
+  24:Core/Src/led.c ****   printf("OK\n\r");
+ 120              		.loc 1 24 3 is_stmt 1 view .LVU10
+ 121 000c 0248     		ldr	r0, .L11+4
+ 122 000e FFF7FEFF 		bl	printf
+ 123              	.LVL5:
+  25:Core/Src/led.c **** }
+ 124              		.loc 1 25 1 is_stmt 0 view .LVU11
+ 125 0012 08BD     		pop	{r3, pc}
+ 126              	.L12:
+ 127              		.align	2
+ 128              	.L11:
+ 129 0014 00040048 		.word	1207960576
+ 130 0018 00000000 		.word	.LC0
+ 131              		.cfi_endproc
+ 132              	.LFE137:
+ 134              		.section	.rodata.lof_command.str1.4,"aMS",%progbits,1
+ 135              		.align	2
+ 136              	.LC1:
+ 137 0000 41726775 		.ascii	"Arguments: %s\012\015\000"
+ 137      6D656E74 
+ 137      733A2025 
+ 137      730A0D00 
+ 138              		.section	.text.lof_command,"ax",%progbits
+ 139              		.align	1
+ 140              		.global	lof_command
+ 141              		.syntax unified
+ 142              		.thumb
+ 143              		.thumb_func
+ 144              		.fpu fpv4-sp-d16
+ 146              	lof_command:
+ 147              	.LVL6:
+ 148              	.LFB138:
+  26:Core/Src/led.c **** 
+ARM GAS  /tmp/ccYqj7rC.s 			page 4
+
+
+  27:Core/Src/led.c **** void lof_command(char *arguments) {
+ 149              		.loc 1 27 35 is_stmt 1 view -0
+ 150              		.cfi_startproc
+ 151              		@ args = 0, pretend = 0, frame = 0
+ 152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 153              		.loc 1 27 35 is_stmt 0 view .LVU13
+ 154 0000 10B5     		push	{r4, lr}
+ 155              	.LCFI3:
+ 156              		.cfi_def_cfa_offset 8
+ 157              		.cfi_offset 4, -8
+ 158              		.cfi_offset 14, -4
+ 159 0002 0446     		mov	r4, r0
+  28:Core/Src/led.c ****   HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+ 160              		.loc 1 28 3 is_stmt 1 view .LVU14
+ 161 0004 0022     		movs	r2, #0
+ 162 0006 0821     		movs	r1, #8
+ 163 0008 0548     		ldr	r0, .L16
+ 164              	.LVL7:
+ 165              		.loc 1 28 3 is_stmt 0 view .LVU15
+ 166 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 167              	.LVL8:
+  29:Core/Src/led.c ****   if (arguments) {
+ 168              		.loc 1 29 3 is_stmt 1 view .LVU16
+ 169              		.loc 1 29 6 is_stmt 0 view .LVU17
+ 170 000e 1CB1     		cbz	r4, .L14
+  30:Core/Src/led.c ****     printf("Arguments: %s\n\r",arguments);
+ 171              		.loc 1 30 5 is_stmt 1 view .LVU18
+ 172 0010 2146     		mov	r1, r4
+ 173 0012 0448     		ldr	r0, .L16+4
+ 174 0014 FFF7FEFF 		bl	printf
+ 175              	.LVL9:
+ 176              	.L14:
+  31:Core/Src/led.c ****   }
+  32:Core/Src/led.c ****   printf("OK\n\r");
+ 177              		.loc 1 32 3 view .LVU19
+ 178 0018 0348     		ldr	r0, .L16+8
+ 179 001a FFF7FEFF 		bl	printf
+ 180              	.LVL10:
+  33:Core/Src/led.c **** }
+ 181              		.loc 1 33 1 is_stmt 0 view .LVU20
+ 182 001e 10BD     		pop	{r4, pc}
+ 183              	.LVL11:
+ 184              	.L17:
+ 185              		.loc 1 33 1 view .LVU21
+ 186              		.align	2
+ 187              	.L16:
+ 188 0020 00040048 		.word	1207960576
+ 189 0024 00000000 		.word	.LC1
+ 190 0028 00000000 		.word	.LC0
+ 191              		.cfi_endproc
+ 192              	.LFE138:
+ 194              		.text
+ 195              	.Letext0:
+ 196              		.file 2 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_
+ 197              		.file 3 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdi
+ 198              		.file 4 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
+ 199              		.file 5 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ARM GAS  /tmp/ccYqj7rC.s 			page 5
+
+
+ 200              		.file 6 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/stdio.h"
+ARM GAS  /tmp/ccYqj7rC.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 led.c
+     /tmp/ccYqj7rC.s:18     .text.lon:0000000000000000 $t
+     /tmp/ccYqj7rC.s:26     .text.lon:0000000000000000 lon
+     /tmp/ccYqj7rC.s:49     .text.lon:0000000000000010 $d
+     /tmp/ccYqj7rC.s:54     .text.lof:0000000000000000 $t
+     /tmp/ccYqj7rC.s:61     .text.lof:0000000000000000 lof
+     /tmp/ccYqj7rC.s:83     .text.lof:0000000000000010 $d
+     /tmp/ccYqj7rC.s:88     .rodata.lon_command.str1.4:0000000000000000 $d
+     /tmp/ccYqj7rC.s:92     .text.lon_command:0000000000000000 $t
+     /tmp/ccYqj7rC.s:99     .text.lon_command:0000000000000000 lon_command
+     /tmp/ccYqj7rC.s:129    .text.lon_command:0000000000000014 $d
+     /tmp/ccYqj7rC.s:135    .rodata.lof_command.str1.4:0000000000000000 $d
+     /tmp/ccYqj7rC.s:139    .text.lof_command:0000000000000000 $t
+     /tmp/ccYqj7rC.s:146    .text.lof_command:0000000000000000 lof_command
+     /tmp/ccYqj7rC.s:188    .text.lof_command:0000000000000020 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+printf
