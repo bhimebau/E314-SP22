@@ -13,7 +13,7 @@ void initialize_alphabet(char *a) {
 }  
 
 void reverse_print_alpha(char *b) {
-  static var = 0;
+  static int var = 0;
   char *p;
   var?(p=NULL):(p=NULL);
   var ^= 1;
