@@ -1,0 +1,455 @@
+ARM GAS  /tmp/ccl0iG8o.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"time.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.rodata.time_command.str1.4,"aMS",%progbits,1
+  18              		.align	2
+  19              	.LC0:
+  20 0000 5768656E 		.ascii	"When should we panic: 0x%08x seconds\012\015\000"
+  20      2073686F 
+  20      756C6420 
+  20      77652070 
+  20      616E6963 
+  21 0027 00       		.align	2
+  22              	.LC1:
+  23 0028 4F4B0A0D 		.ascii	"OK\012\015\000"
+  23      00
+  24              		.section	.text.time_command,"ax",%progbits
+  25              		.align	1
+  26              		.global	time_command
+  27              		.arch armv7e-m
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  31              		.fpu fpv4-sp-d16
+  33              	time_command:
+  34              	.LVL0:
+  35              	.LFB291:
+  36              		.file 1 "Core/Src/time.c"
+   1:Core/Src/time.c **** /* time.c
+   2:Core/Src/time.c ****  * Description: 
+   3:Core/Src/time.c ****  *
+   4:Core/Src/time.c ****  * Author: Bryce Himebaugh 
+   5:Core/Src/time.c ****  * Contact: bhimebau@indiana.edu
+   6:Core/Src/time.c ****  * Date: 03.19.2021
+   7:Core/Src/time.c ****  * Copyright (C) 2021
+   8:Core/Src/time.c ****  *
+   9:Core/Src/time.c ****  */
+  10:Core/Src/time.c **** 
+  11:Core/Src/time.c **** #include <stdio.h>
+  12:Core/Src/time.c **** #include <stdlib.h>
+  13:Core/Src/time.c **** #include <time.h>
+  14:Core/Src/time.c **** #include "main.h"
+  15:Core/Src/time.c **** 
+  16:Core/Src/time.c **** extern RTC_HandleTypeDef hrtc;
+  17:Core/Src/time.c **** 
+ARM GAS  /tmp/ccl0iG8o.s 			page 2
+
+
+  18:Core/Src/time.c **** 
+  19:Core/Src/time.c **** void time_command (char *args) {
+  37              		.loc 1 19 32 view -0
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 40
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              		.loc 1 19 32 is_stmt 0 view .LVU1
+  42 0000 00B5     		push	{lr}
+  43              	.LCFI0:
+  44              		.cfi_def_cfa_offset 4
+  45              		.cfi_offset 14, -4
+  46 0002 8BB0     		sub	sp, sp, #44
+  47              	.LCFI1:
+  48              		.cfi_def_cfa_offset 48
+  20:Core/Src/time.c ****   struct tm t;
+  49              		.loc 1 20 3 is_stmt 1 view .LVU2
+  21:Core/Src/time.c ****   time_t t_of_day;
+  50              		.loc 1 21 3 view .LVU3
+  22:Core/Src/time.c ****   t.tm_year = 2021-1900;  // Year - 1900
+  51              		.loc 1 22 3 view .LVU4
+  52              		.loc 1 22 13 is_stmt 0 view .LVU5
+  53 0004 7923     		movs	r3, #121
+  54 0006 0693     		str	r3, [sp, #24]
+  23:Core/Src/time.c ****   t.tm_mon = 2;           // Month, where 0 = jan
+  55              		.loc 1 23 3 is_stmt 1 view .LVU6
+  56              		.loc 1 23 12 is_stmt 0 view .LVU7
+  57 0008 0223     		movs	r3, #2
+  58 000a 0593     		str	r3, [sp, #20]
+  24:Core/Src/time.c ****   t.tm_mday = 19;         // Day of the month
+  59              		.loc 1 24 3 is_stmt 1 view .LVU8
+  60              		.loc 1 24 13 is_stmt 0 view .LVU9
+  61 000c 1323     		movs	r3, #19
+  62 000e 0493     		str	r3, [sp, #16]
+  25:Core/Src/time.c ****   t.tm_hour = 10;
+  63              		.loc 1 25 3 is_stmt 1 view .LVU10
+  64              		.loc 1 25 13 is_stmt 0 view .LVU11
+  65 0010 0A23     		movs	r3, #10
+  66 0012 0393     		str	r3, [sp, #12]
+  26:Core/Src/time.c ****   t.tm_min = 12;
+  67              		.loc 1 26 3 is_stmt 1 view .LVU12
+  68              		.loc 1 26 12 is_stmt 0 view .LVU13
+  69 0014 0C23     		movs	r3, #12
+  70 0016 0293     		str	r3, [sp, #8]
+  27:Core/Src/time.c ****   t.tm_sec = 00;
+  71              		.loc 1 27 3 is_stmt 1 view .LVU14
+  72              		.loc 1 27 12 is_stmt 0 view .LVU15
+  73 0018 0023     		movs	r3, #0
+  74 001a 0193     		str	r3, [sp, #4]
+  28:Core/Src/time.c ****   t.tm_isdst = -1;        // Is DST on? 1 = yes, 0 = no, -1 = unknown
+  75              		.loc 1 28 3 is_stmt 1 view .LVU16
+  76              		.loc 1 28 14 is_stmt 0 view .LVU17
+  77 001c 4FF0FF33 		mov	r3, #-1
+  78 0020 0993     		str	r3, [sp, #36]
+  29:Core/Src/time.c ****   t_of_day = mktime(&t);
+  79              		.loc 1 29 3 is_stmt 1 view .LVU18
+  80              		.loc 1 29 14 is_stmt 0 view .LVU19
+  81 0022 01A8     		add	r0, sp, #4
+ARM GAS  /tmp/ccl0iG8o.s 			page 3
+
+
+  82              	.LVL1:
+  83              		.loc 1 29 14 view .LVU20
+  84 0024 FFF7FEFF 		bl	mktime
+  85              	.LVL2:
+  30:Core/Src/time.c ****   printf("When should we panic: 0x%08x seconds\n\r", 0x7FFFFFFF - (int) t_of_day);
+  86              		.loc 1 30 3 is_stmt 1 view .LVU21
+  87 0028 6FF00041 		mvn	r1, #-2147483648
+  88              	.LVL3:
+  89              		.loc 1 30 3 is_stmt 0 view .LVU22
+  90 002c 091A     		subs	r1, r1, r0
+  91 002e 0448     		ldr	r0, .L3
+  92              		.loc 1 30 3 view .LVU23
+  93 0030 FFF7FEFF 		bl	printf
+  94              	.LVL4:
+  31:Core/Src/time.c ****   printf("OK\n\r");
+  95              		.loc 1 31 3 is_stmt 1 view .LVU24
+  96 0034 0348     		ldr	r0, .L3+4
+  97 0036 FFF7FEFF 		bl	printf
+  98              	.LVL5:
+  32:Core/Src/time.c **** }
+  99              		.loc 1 32 1 is_stmt 0 view .LVU25
+ 100 003a 0BB0     		add	sp, sp, #44
+ 101              	.LCFI2:
+ 102              		.cfi_def_cfa_offset 4
+ 103              		@ sp needed
+ 104 003c 5DF804FB 		ldr	pc, [sp], #4
+ 105              	.L4:
+ 106              		.align	2
+ 107              	.L3:
+ 108 0040 00000000 		.word	.LC0
+ 109 0044 28000000 		.word	.LC1
+ 110              		.cfi_endproc
+ 111              	.LFE291:
+ 113              		.section	.rodata.sample_time_test.str1.4,"aMS",%progbits,1
+ 114              		.align	2
+ 115              	.LC2:
+ 116 0000 52544320 		.ascii	"RTC Reports the following Date: %02d/%02d/20%02d\012"
+ 116      5265706F 
+ 116      72747320 
+ 116      74686520 
+ 116      666F6C6C 
+ 117 0031 0D00     		.ascii	"\015\000"
+ 118 0033 00       		.align	2
+ 119              	.LC3:
+ 120 0034 52544320 		.ascii	"RTC Reports the following Time: %02d:%02d:%02d\012\015"
+ 120      5265706F 
+ 120      72747320 
+ 120      74686520 
+ 120      666F6C6C 
+ 121 0064 00       		.ascii	"\000"
+ 122 0065 000000   		.align	2
+ 123              	.LC4:
+ 124 0068 43757272 		.ascii	"Current Epoch time Converted from RTC: %d\012\015\000"
+ 124      656E7420 
+ 124      45706F63 
+ 124      68207469 
+ 124      6D652043 
+ARM GAS  /tmp/ccl0iG8o.s 			page 4
+
+
+ 125              		.align	2
+ 126              	.LC5:
+ 127 0094 45706F63 		.ascii	"Epoch Time Recovered Date: %02d/%02d/20%02d\012\015"
+ 127      68205469 
+ 127      6D652052 
+ 127      65636F76 
+ 127      65726564 
+ 128 00c1 00       		.ascii	"\000"
+ 129 00c2 0000     		.align	2
+ 130              	.LC6:
+ 131 00c4 45706F63 		.ascii	"Epoch Time Recovered Time: %02d:%02d:%02d\012\015\000"
+ 131      68205469 
+ 131      6D652052 
+ 131      65636F76 
+ 131      65726564 
+ 132              		.section	.text.sample_time_test,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	sample_time_test
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.fpu fpv4-sp-d16
+ 140              	sample_time_test:
+ 141              	.LFB292:
+  33:Core/Src/time.c **** 
+  34:Core/Src/time.c **** int sample_time_test(void) {
+ 142              		.loc 1 34 28 is_stmt 1 view -0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 72
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146 0000 10B5     		push	{r4, lr}
+ 147              	.LCFI3:
+ 148              		.cfi_def_cfa_offset 8
+ 149              		.cfi_offset 4, -8
+ 150              		.cfi_offset 14, -4
+ 151 0002 92B0     		sub	sp, sp, #72
+ 152              	.LCFI4:
+ 153              		.cfi_def_cfa_offset 80
+  35:Core/Src/time.c ****   /* Function that reads the RTC time, converts it to epoch time using
+  36:Core/Src/time.c ****      mktime, and then converts it back using localtime
+  37:Core/Src/time.c ****    */
+  38:Core/Src/time.c ****   RTC_TimeTypeDef current_time;
+ 154              		.loc 1 38 3 view .LVU27
+  39:Core/Src/time.c ****   RTC_DateTypeDef current_date;
+ 155              		.loc 1 39 3 view .LVU28
+  40:Core/Src/time.c ****   struct tm t = {0};
+ 156              		.loc 1 40 3 view .LVU29
+ 157              		.loc 1 40 13 is_stmt 0 view .LVU30
+ 158 0004 2422     		movs	r2, #36
+ 159 0006 0021     		movs	r1, #0
+ 160 0008 03A8     		add	r0, sp, #12
+ 161 000a FFF7FEFF 		bl	memset
+ 162              	.LVL6:
+  41:Core/Src/time.c ****   struct tm * recover;
+ 163              		.loc 1 41 3 is_stmt 1 view .LVU31
+  42:Core/Src/time.c ****   time_t t_of_day;
+ 164              		.loc 1 42 3 view .LVU32
+ARM GAS  /tmp/ccl0iG8o.s 			page 5
+
+
+  43:Core/Src/time.c ****   
+  44:Core/Src/time.c ****   HAL_RTC_GetTime(&hrtc,&current_time,RTC_FORMAT_BIN);
+ 165              		.loc 1 44 3 view .LVU33
+ 166 000e 2A4C     		ldr	r4, .L7
+ 167 0010 0022     		movs	r2, #0
+ 168 0012 0DA9     		add	r1, sp, #52
+ 169 0014 2046     		mov	r0, r4
+ 170 0016 FFF7FEFF 		bl	HAL_RTC_GetTime
+ 171              	.LVL7:
+  45:Core/Src/time.c ****   HAL_RTC_GetDate(&hrtc,&current_date,RTC_FORMAT_BIN);
+ 172              		.loc 1 45 3 view .LVU34
+ 173 001a 0022     		movs	r2, #0
+ 174 001c 0CA9     		add	r1, sp, #48
+ 175 001e 2046     		mov	r0, r4
+ 176 0020 FFF7FEFF 		bl	HAL_RTC_GetDate
+ 177              	.LVL8:
+  46:Core/Src/time.c ****   printf("RTC Reports the following Date: %02d/%02d/20%02d\n\r",
+ 178              		.loc 1 46 3 view .LVU35
+ 179 0024 9DF83330 		ldrb	r3, [sp, #51]	@ zero_extendqisi2
+ 180 0028 9DF83220 		ldrb	r2, [sp, #50]	@ zero_extendqisi2
+ 181 002c 9DF83110 		ldrb	r1, [sp, #49]	@ zero_extendqisi2
+ 182 0030 2248     		ldr	r0, .L7+4
+ 183 0032 FFF7FEFF 		bl	printf
+ 184              	.LVL9:
+  47:Core/Src/time.c ****          current_date.Month,
+  48:Core/Src/time.c ****          current_date.Date,
+  49:Core/Src/time.c ****          current_date.Year);
+  50:Core/Src/time.c **** 
+  51:Core/Src/time.c ****   printf("RTC Reports the following Time: %02d:%02d:%02d\n\r",
+ 185              		.loc 1 51 3 view .LVU36
+ 186 0036 9DF83630 		ldrb	r3, [sp, #54]	@ zero_extendqisi2
+ 187 003a 9DF83520 		ldrb	r2, [sp, #53]	@ zero_extendqisi2
+ 188 003e 9DF83410 		ldrb	r1, [sp, #52]	@ zero_extendqisi2
+ 189 0042 1F48     		ldr	r0, .L7+8
+ 190 0044 FFF7FEFF 		bl	printf
+ 191              	.LVL10:
+  52:Core/Src/time.c ****          current_time.Hours,
+  53:Core/Src/time.c ****          current_time.Minutes,
+  54:Core/Src/time.c ****          current_time.Seconds);
+  55:Core/Src/time.c **** 
+  56:Core/Src/time.c ****   t.tm_year = current_date.Year + 100;  
+ 192              		.loc 1 56 3 view .LVU37
+ 193              		.loc 1 56 27 is_stmt 0 view .LVU38
+ 194 0048 9DF83330 		ldrb	r3, [sp, #51]	@ zero_extendqisi2
+ 195              		.loc 1 56 33 view .LVU39
+ 196 004c 6433     		adds	r3, r3, #100
+ 197              		.loc 1 56 13 view .LVU40
+ 198 004e 0893     		str	r3, [sp, #32]
+  57:Core/Src/time.c ****   t.tm_mon = current_date.Month - 1; 
+ 199              		.loc 1 57 3 is_stmt 1 view .LVU41
+ 200              		.loc 1 57 26 is_stmt 0 view .LVU42
+ 201 0050 9DF83130 		ldrb	r3, [sp, #49]	@ zero_extendqisi2
+ 202              		.loc 1 57 33 view .LVU43
+ 203 0054 013B     		subs	r3, r3, #1
+ 204              		.loc 1 57 12 view .LVU44
+ 205 0056 0793     		str	r3, [sp, #28]
+  58:Core/Src/time.c ****   t.tm_mday = current_date.Date; 
+ARM GAS  /tmp/ccl0iG8o.s 			page 6
+
+
+ 206              		.loc 1 58 3 is_stmt 1 view .LVU45
+ 207              		.loc 1 58 27 is_stmt 0 view .LVU46
+ 208 0058 9DF83230 		ldrb	r3, [sp, #50]	@ zero_extendqisi2
+ 209              		.loc 1 58 13 view .LVU47
+ 210 005c 0693     		str	r3, [sp, #24]
+  59:Core/Src/time.c ****   t.tm_hour = current_time.Hours;
+ 211              		.loc 1 59 3 is_stmt 1 view .LVU48
+ 212              		.loc 1 59 27 is_stmt 0 view .LVU49
+ 213 005e 9DF83430 		ldrb	r3, [sp, #52]	@ zero_extendqisi2
+ 214              		.loc 1 59 13 view .LVU50
+ 215 0062 0593     		str	r3, [sp, #20]
+  60:Core/Src/time.c ****   t.tm_min = current_time.Minutes;
+ 216              		.loc 1 60 3 is_stmt 1 view .LVU51
+ 217              		.loc 1 60 26 is_stmt 0 view .LVU52
+ 218 0064 9DF83530 		ldrb	r3, [sp, #53]	@ zero_extendqisi2
+ 219              		.loc 1 60 12 view .LVU53
+ 220 0068 0493     		str	r3, [sp, #16]
+  61:Core/Src/time.c ****   t.tm_sec = current_time.Seconds;
+ 221              		.loc 1 61 3 is_stmt 1 view .LVU54
+ 222              		.loc 1 61 26 is_stmt 0 view .LVU55
+ 223 006a 9DF83630 		ldrb	r3, [sp, #54]	@ zero_extendqisi2
+ 224              		.loc 1 61 12 view .LVU56
+ 225 006e 0393     		str	r3, [sp, #12]
+  62:Core/Src/time.c ****   t.tm_isdst = -1;    
+ 226              		.loc 1 62 3 is_stmt 1 view .LVU57
+ 227              		.loc 1 62 14 is_stmt 0 view .LVU58
+ 228 0070 4FF0FF33 		mov	r3, #-1
+ 229 0074 0B93     		str	r3, [sp, #44]
+  63:Core/Src/time.c ****   t_of_day = mktime(&t);
+ 230              		.loc 1 63 3 is_stmt 1 view .LVU59
+ 231              		.loc 1 63 14 is_stmt 0 view .LVU60
+ 232 0076 03A8     		add	r0, sp, #12
+ 233 0078 FFF7FEFF 		bl	mktime
+ 234              	.LVL11:
+ 235              		.loc 1 63 12 view .LVU61
+ 236 007c 0090     		str	r0, [sp]
+ 237 007e 0191     		str	r1, [sp, #4]
+  64:Core/Src/time.c ****   printf("Current Epoch time Converted from RTC: %d\n\r", (int) t_of_day);
+ 238              		.loc 1 64 3 is_stmt 1 view .LVU62
+ 239 0080 0146     		mov	r1, r0
+ 240 0082 1048     		ldr	r0, .L7+12
+ 241 0084 FFF7FEFF 		bl	printf
+ 242              	.LVL12:
+  65:Core/Src/time.c ****   recover = localtime(&t_of_day);
+ 243              		.loc 1 65 3 view .LVU63
+ 244              		.loc 1 65 13 is_stmt 0 view .LVU64
+ 245 0088 6846     		mov	r0, sp
+ 246 008a FFF7FEFF 		bl	localtime
+ 247              	.LVL13:
+ 248 008e 0446     		mov	r4, r0
+ 249              	.LVL14:
+  66:Core/Src/time.c ****   printf("Epoch Time Recovered Date: %02d/%02d/20%02d\n\r",
+ 250              		.loc 1 66 3 is_stmt 1 view .LVU65
+  67:Core/Src/time.c ****          recover->tm_mday,
+  68:Core/Src/time.c ****          recover->tm_mon + 1,
+ 251              		.loc 1 68 17 is_stmt 0 view .LVU66
+ 252 0090 0269     		ldr	r2, [r0, #16]
+ARM GAS  /tmp/ccl0iG8o.s 			page 7
+
+
+  69:Core/Src/time.c ****          recover->tm_year - 100);
+ 253              		.loc 1 69 17 view .LVU67
+ 254 0092 4369     		ldr	r3, [r0, #20]
+  66:Core/Src/time.c ****   printf("Epoch Time Recovered Date: %02d/%02d/20%02d\n\r",
+ 255              		.loc 1 66 3 view .LVU68
+ 256 0094 643B     		subs	r3, r3, #100
+ 257 0096 0132     		adds	r2, r2, #1
+ 258 0098 C168     		ldr	r1, [r0, #12]
+ 259 009a 0B48     		ldr	r0, .L7+16
+ 260              	.LVL15:
+  66:Core/Src/time.c ****   printf("Epoch Time Recovered Date: %02d/%02d/20%02d\n\r",
+ 261              		.loc 1 66 3 view .LVU69
+ 262 009c FFF7FEFF 		bl	printf
+ 263              	.LVL16:
+  70:Core/Src/time.c **** 
+  71:Core/Src/time.c ****   printf("Epoch Time Recovered Time: %02d:%02d:%02d\n\r",
+ 264              		.loc 1 71 3 is_stmt 1 view .LVU70
+ 265 00a0 2368     		ldr	r3, [r4]
+ 266 00a2 6268     		ldr	r2, [r4, #4]
+ 267 00a4 A168     		ldr	r1, [r4, #8]
+ 268 00a6 0948     		ldr	r0, .L7+20
+ 269 00a8 FFF7FEFF 		bl	printf
+ 270              	.LVL17:
+  72:Core/Src/time.c ****          recover->tm_hour,
+  73:Core/Src/time.c ****          recover->tm_min,
+  74:Core/Src/time.c ****          recover->tm_sec);
+  75:Core/Src/time.c ****   free(recover);
+ 271              		.loc 1 75 3 view .LVU71
+ 272 00ac 2046     		mov	r0, r4
+ 273 00ae FFF7FEFF 		bl	free
+ 274              	.LVL18:
+  76:Core/Src/time.c ****   return (0);
+ 275              		.loc 1 76 3 view .LVU72
+  77:Core/Src/time.c **** }
+ 276              		.loc 1 77 1 is_stmt 0 view .LVU73
+ 277 00b2 0020     		movs	r0, #0
+ 278 00b4 12B0     		add	sp, sp, #72
+ 279              	.LCFI5:
+ 280              		.cfi_def_cfa_offset 8
+ 281              		@ sp needed
+ 282 00b6 10BD     		pop	{r4, pc}
+ 283              	.LVL19:
+ 284              	.L8:
+ 285              		.loc 1 77 1 view .LVU74
+ 286              		.align	2
+ 287              	.L7:
+ 288 00b8 00000000 		.word	hrtc
+ 289 00bc 00000000 		.word	.LC2
+ 290 00c0 34000000 		.word	.LC3
+ 291 00c4 68000000 		.word	.LC4
+ 292 00c8 94000000 		.word	.LC5
+ 293 00cc C4000000 		.word	.LC6
+ 294              		.cfi_endproc
+ 295              	.LFE292:
+ 297              		.text
+ 298              	.Letext0:
+ 299              		.file 2 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/machine/_defa
+ARM GAS  /tmp/ccl0iG8o.s 			page 8
+
+
+ 300              		.file 3 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/sys/_stdint.h
+ 301              		.file 4 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/sys/_timeval.
+ 302              		.file 5 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/time.h"
+ 303              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l432xx.h"
+ 304              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 305              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rtc.h"
+ 306              		.file 9 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/stdio.h"
+ 307              		.file 10 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/stdlib.h"
+ 308              		.file 11 "<built-in>"
+ARM GAS  /tmp/ccl0iG8o.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 time.c
+     /tmp/ccl0iG8o.s:18     .rodata.time_command.str1.4:0000000000000000 $d
+     /tmp/ccl0iG8o.s:25     .text.time_command:0000000000000000 $t
+     /tmp/ccl0iG8o.s:33     .text.time_command:0000000000000000 time_command
+     /tmp/ccl0iG8o.s:108    .text.time_command:0000000000000040 $d
+     /tmp/ccl0iG8o.s:114    .rodata.sample_time_test.str1.4:0000000000000000 $d
+     /tmp/ccl0iG8o.s:133    .text.sample_time_test:0000000000000000 $t
+     /tmp/ccl0iG8o.s:140    .text.sample_time_test:0000000000000000 sample_time_test
+     /tmp/ccl0iG8o.s:288    .text.sample_time_test:00000000000000b8 $d
+
+UNDEFINED SYMBOLS
+mktime
+printf
+memset
+HAL_RTC_GetTime
+HAL_RTC_GetDate
+localtime
+free
+hrtc

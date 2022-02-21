@@ -1,0 +1,488 @@
+ARM GAS  /tmp/cc7b4L5H.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sample.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.sample,"ax",%progbits
+  18              		.align	1
+  19              		.global	sample
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	sample:
+  27              	.LFB293:
+  28              		.file 1 "Core/Src/sample.c"
+   1:Core/Src/sample.c **** /* sample.c
+   2:Core/Src/sample.c ****  * Description: 
+   3:Core/Src/sample.c ****  *
+   4:Core/Src/sample.c ****  * Author: Bryce Himebaugh 
+   5:Core/Src/sample.c ****  * Contact: bhimebau@indiana.edu
+   6:Core/Src/sample.c ****  * Date: 03.18.2021
+   7:Core/Src/sample.c ****  * Copyright (C) 2021
+   8:Core/Src/sample.c ****  *
+   9:Core/Src/sample.c ****  */
+  10:Core/Src/sample.c **** 
+  11:Core/Src/sample.c **** #include <stdio.h>
+  12:Core/Src/sample.c **** #include "main.h"
+  13:Core/Src/sample.c **** #include "temperature.h"
+  14:Core/Src/sample.c **** #include "battery.h"
+  15:Core/Src/sample.c **** #include "flash.h"
+  16:Core/Src/sample.c **** #include "sample.h"
+  17:Core/Src/sample.c **** 
+  18:Core/Src/sample.c **** extern uint32_t period;
+  19:Core/Src/sample.c **** extern flash_status_t flash_status;
+  20:Core/Src/sample.c **** 
+  21:Core/Src/sample.c **** void sample_command(char *args) {
+  22:Core/Src/sample.c ****   if (args) {
+  23:Core/Src/sample.c ****     printf("NOK\n\r");
+  24:Core/Src/sample.c ****     return;
+  25:Core/Src/sample.c ****   }
+  26:Core/Src/sample.c ****   else {
+  27:Core/Src/sample.c ****     printf("Sample Sensors\n\r");
+  28:Core/Src/sample.c ****     sample();
+  29:Core/Src/sample.c ****   }
+  30:Core/Src/sample.c ****   printf("OK\n\r");
+ARM GAS  /tmp/cc7b4L5H.s 			page 2
+
+
+  31:Core/Src/sample.c **** }  
+  32:Core/Src/sample.c **** 
+  33:Core/Src/sample.c **** void data_command(char *args) {
+  34:Core/Src/sample.c ****   if (args) {
+  35:Core/Src/sample.c ****     printf("NOK\n\r");
+  36:Core/Src/sample.c ****     return;
+  37:Core/Src/sample.c ****   }
+  38:Core/Src/sample.c ****   else {
+  39:Core/Src/sample.c ****     read_data_records(&flash_status);
+  40:Core/Src/sample.c ****   }
+  41:Core/Src/sample.c ****   printf("OK\n\r");
+  42:Core/Src/sample.c **** }  
+  43:Core/Src/sample.c **** 
+  44:Core/Src/sample.c **** int sample(void) {
+  29              		.loc 1 44 18 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 16
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 85B0     		sub	sp, sp, #20
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 24
+  45:Core/Src/sample.c ****   sensordata_t sd;
+  40              		.loc 1 45 3 view .LVU1
+  46:Core/Src/sample.c ****   sd.watermark = 1;
+  41              		.loc 1 46 3 view .LVU2
+  42              		.loc 1 46 16 is_stmt 0 view .LVU3
+  43 0004 0123     		movs	r3, #1
+  44 0006 8DF80030 		strb	r3, [sp]
+  47:Core/Src/sample.c ****   sd.status=1;
+  45              		.loc 1 47 3 is_stmt 1 view .LVU4
+  46              		.loc 1 47 12 is_stmt 0 view .LVU5
+  47 000a 8DF80130 		strb	r3, [sp, #1]
+  48:Core/Src/sample.c ****   sd.battery_voltage = (uint16_t) read_vrefint();
+  48              		.loc 1 48 3 is_stmt 1 view .LVU6
+  49              		.loc 1 48 35 is_stmt 0 view .LVU7
+  50 000e FFF7FEFF 		bl	read_vrefint
+  51              	.LVL0:
+  52              		.loc 1 48 22 view .LVU8
+  53 0012 ADF80800 		strh	r0, [sp, #8]	@ movhi
+  49:Core/Src/sample.c ****   sd.temperature = (uint16_t) read_temp();
+  54              		.loc 1 49 3 is_stmt 1 view .LVU9
+  55              		.loc 1 49 31 is_stmt 0 view .LVU10
+  56 0016 FFF7FEFF 		bl	read_temp
+  57              	.LVL1:
+  58              		.loc 1 49 18 view .LVU11
+  59 001a ADF80A00 		strh	r0, [sp, #10]	@ movhi
+  50:Core/Src/sample.c ****   sd.sensor_period = period;
+  60              		.loc 1 50 3 is_stmt 1 view .LVU12
+  61              		.loc 1 50 20 is_stmt 0 view .LVU13
+  62 001e 054B     		ldr	r3, .L3
+  63 0020 1B68     		ldr	r3, [r3]
+  64 0022 0393     		str	r3, [sp, #12]
+  51:Core/Src/sample.c ****   write_raw(&flash_status,(raw_t *) &sd);
+ARM GAS  /tmp/cc7b4L5H.s 			page 3
+
+
+  65              		.loc 1 51 3 is_stmt 1 view .LVU14
+  66 0024 6946     		mov	r1, sp
+  67 0026 0448     		ldr	r0, .L3+4
+  68 0028 FFF7FEFF 		bl	write_raw
+  69              	.LVL2:
+  52:Core/Src/sample.c ****   return(0);
+  70              		.loc 1 52 3 view .LVU15
+  53:Core/Src/sample.c **** }
+  71              		.loc 1 53 1 is_stmt 0 view .LVU16
+  72 002c 0020     		movs	r0, #0
+  73 002e 05B0     		add	sp, sp, #20
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 4
+  76              		@ sp needed
+  77 0030 5DF804FB 		ldr	pc, [sp], #4
+  78              	.L4:
+  79              		.align	2
+  80              	.L3:
+  81 0034 00000000 		.word	period
+  82 0038 00000000 		.word	flash_status
+  83              		.cfi_endproc
+  84              	.LFE293:
+  86              		.section	.rodata.sample_command.str1.4,"aMS",%progbits,1
+  87              		.align	2
+  88              	.LC0:
+  89 0000 4E4F4B0A 		.ascii	"NOK\012\015\000"
+  89      0D00
+  90 0006 0000     		.align	2
+  91              	.LC1:
+  92 0008 53616D70 		.ascii	"Sample Sensors\012\015\000"
+  92      6C652053 
+  92      656E736F 
+  92      72730A0D 
+  92      00
+  93 0019 000000   		.align	2
+  94              	.LC2:
+  95 001c 4F4B0A0D 		.ascii	"OK\012\015\000"
+  95      00
+  96              		.section	.text.sample_command,"ax",%progbits
+  97              		.align	1
+  98              		.global	sample_command
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.fpu fpv4-sp-d16
+ 104              	sample_command:
+ 105              	.LVL3:
+ 106              	.LFB291:
+  21:Core/Src/sample.c ****   if (args) {
+ 107              		.loc 1 21 33 is_stmt 1 view -0
+ 108              		.cfi_startproc
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+  21:Core/Src/sample.c ****   if (args) {
+ 111              		.loc 1 21 33 is_stmt 0 view .LVU18
+ 112 0000 08B5     		push	{r3, lr}
+ 113              	.LCFI3:
+ARM GAS  /tmp/cc7b4L5H.s 			page 4
+
+
+ 114              		.cfi_def_cfa_offset 8
+ 115              		.cfi_offset 3, -8
+ 116              		.cfi_offset 14, -4
+  22:Core/Src/sample.c ****     printf("NOK\n\r");
+ 117              		.loc 1 22 3 is_stmt 1 view .LVU19
+  22:Core/Src/sample.c ****     printf("NOK\n\r");
+ 118              		.loc 1 22 6 is_stmt 0 view .LVU20
+ 119 0002 18B1     		cbz	r0, .L6
+  23:Core/Src/sample.c ****     return;
+ 120              		.loc 1 23 5 is_stmt 1 view .LVU21
+ 121 0004 0648     		ldr	r0, .L9
+ 122              	.LVL4:
+  23:Core/Src/sample.c ****     return;
+ 123              		.loc 1 23 5 is_stmt 0 view .LVU22
+ 124 0006 FFF7FEFF 		bl	printf
+ 125              	.LVL5:
+  24:Core/Src/sample.c ****   }
+ 126              		.loc 1 24 5 is_stmt 1 view .LVU23
+ 127              	.L5:
+  31:Core/Src/sample.c **** 
+ 128              		.loc 1 31 1 is_stmt 0 view .LVU24
+ 129 000a 08BD     		pop	{r3, pc}
+ 130              	.LVL6:
+ 131              	.L6:
+  27:Core/Src/sample.c ****     sample();
+ 132              		.loc 1 27 5 is_stmt 1 view .LVU25
+ 133 000c 0548     		ldr	r0, .L9+4
+ 134              	.LVL7:
+  27:Core/Src/sample.c ****     sample();
+ 135              		.loc 1 27 5 is_stmt 0 view .LVU26
+ 136 000e FFF7FEFF 		bl	printf
+ 137              	.LVL8:
+  28:Core/Src/sample.c ****   }
+ 138              		.loc 1 28 5 is_stmt 1 view .LVU27
+ 139 0012 FFF7FEFF 		bl	sample
+ 140              	.LVL9:
+  30:Core/Src/sample.c **** }  
+ 141              		.loc 1 30 3 view .LVU28
+ 142 0016 0448     		ldr	r0, .L9+8
+ 143 0018 FFF7FEFF 		bl	printf
+ 144              	.LVL10:
+ 145 001c F5E7     		b	.L5
+ 146              	.L10:
+ 147 001e 00BF     		.align	2
+ 148              	.L9:
+ 149 0020 00000000 		.word	.LC0
+ 150 0024 08000000 		.word	.LC1
+ 151 0028 1C000000 		.word	.LC2
+ 152              		.cfi_endproc
+ 153              	.LFE291:
+ 155              		.section	.rodata.read_data_records.str1.4,"aMS",%progbits,1
+ 156              		.align	2
+ 157              	.LC3:
+ 158 0000 25642062 		.ascii	"%d b=%d.%d,t=%d,p=%d\012\015\000"
+ 158      3D25642E 
+ 158      25642C74 
+ 158      3D25642C 
+ARM GAS  /tmp/cc7b4L5H.s 			page 5
+
+
+ 158      703D2564 
+ 159              		.section	.text.read_data_records,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	read_data_records
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	read_data_records:
+ 168              	.LVL11:
+ 169              	.LFB294:
+  54:Core/Src/sample.c **** 
+  55:Core/Src/sample.c **** int read_data_records(flash_status_t *fs) {
+ 170              		.loc 1 55 43 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		.loc 1 55 43 is_stmt 0 view .LVU30
+ 175 0000 70B5     		push	{r4, r5, r6, lr}
+ 176              	.LCFI4:
+ 177              		.cfi_def_cfa_offset 16
+ 178              		.cfi_offset 4, -16
+ 179              		.cfi_offset 5, -12
+ 180              		.cfi_offset 6, -8
+ 181              		.cfi_offset 14, -4
+ 182 0002 82B0     		sub	sp, sp, #8
+ 183              	.LCFI5:
+ 184              		.cfi_def_cfa_offset 24
+ 185 0004 0546     		mov	r5, r0
+  56:Core/Src/sample.c ****   sensordata_t * p;
+ 186              		.loc 1 56 3 is_stmt 1 view .LVU31
+  57:Core/Src/sample.c ****   int count = 1;
+ 187              		.loc 1 57 3 view .LVU32
+ 188              	.LVL12:
+  58:Core/Src/sample.c ****   p = (sensordata_t *) fs->data_start;
+ 189              		.loc 1 58 3 view .LVU33
+ 190              		.loc 1 58 5 is_stmt 0 view .LVU34
+ 191 0006 0468     		ldr	r4, [r0]
+ 192              	.LVL13:
+  59:Core/Src/sample.c ****   while (p>((sensordata_t *)fs->next_address)) {
+ 193              		.loc 1 59 3 is_stmt 1 view .LVU35
+  57:Core/Src/sample.c ****   int count = 1;
+ 194              		.loc 1 57 7 is_stmt 0 view .LVU36
+ 195 0008 0126     		movs	r6, #1
+ 196              		.loc 1 59 9 view .LVU37
+ 197 000a 00E0     		b	.L12
+ 198              	.LVL14:
+ 199              	.L13:
+  60:Core/Src/sample.c ****     if (p->status==1) {
+  61:Core/Src/sample.c ****       printf("%d b=%d.%d,t=%d,p=%d\n\r",
+  62:Core/Src/sample.c ****              count,
+  63:Core/Src/sample.c ****              p->battery_voltage/1000,
+  64:Core/Src/sample.c ****              p->battery_voltage%1000,
+  65:Core/Src/sample.c ****              p->temperature,
+  66:Core/Src/sample.c ****              (int) p->sensor_period);
+  67:Core/Src/sample.c ****       count++;
+  68:Core/Src/sample.c ****     }
+ARM GAS  /tmp/cc7b4L5H.s 			page 6
+
+
+  69:Core/Src/sample.c ****     p--;
+ 200              		.loc 1 69 5 is_stmt 1 view .LVU38
+ 201              		.loc 1 69 6 is_stmt 0 view .LVU39
+ 202 000c 103C     		subs	r4, r4, #16
+ 203              	.LVL15:
+ 204              	.L12:
+  59:Core/Src/sample.c ****   while (p>((sensordata_t *)fs->next_address)) {
+ 205              		.loc 1 59 9 is_stmt 1 view .LVU40
+  59:Core/Src/sample.c ****   while (p>((sensordata_t *)fs->next_address)) {
+ 206              		.loc 1 59 31 is_stmt 0 view .LVU41
+ 207 000e AB68     		ldr	r3, [r5, #8]
+  59:Core/Src/sample.c ****   while (p>((sensordata_t *)fs->next_address)) {
+ 208              		.loc 1 59 9 view .LVU42
+ 209 0010 A342     		cmp	r3, r4
+ 210 0012 17D2     		bcs	.L16
+  60:Core/Src/sample.c ****     if (p->status==1) {
+ 211              		.loc 1 60 5 is_stmt 1 view .LVU43
+  60:Core/Src/sample.c ****     if (p->status==1) {
+ 212              		.loc 1 60 10 is_stmt 0 view .LVU44
+ 213 0014 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+  60:Core/Src/sample.c ****     if (p->status==1) {
+ 214              		.loc 1 60 8 view .LVU45
+ 215 0016 012B     		cmp	r3, #1
+ 216 0018 F8D1     		bne	.L13
+  61:Core/Src/sample.c ****              count,
+ 217              		.loc 1 61 7 is_stmt 1 view .LVU46
+  63:Core/Src/sample.c ****              p->battery_voltage%1000,
+ 218              		.loc 1 63 15 is_stmt 0 view .LVU47
+ 219 001a 2389     		ldrh	r3, [r4, #8]
+  65:Core/Src/sample.c ****              (int) p->sensor_period);
+ 220              		.loc 1 65 15 view .LVU48
+ 221 001c B4F90A00 		ldrsh	r0, [r4, #10]
+  66:Core/Src/sample.c ****       count++;
+ 222              		.loc 1 66 21 view .LVU49
+ 223 0020 E168     		ldr	r1, [r4, #12]
+  61:Core/Src/sample.c ****              count,
+ 224              		.loc 1 61 7 view .LVU50
+ 225 0022 0A4A     		ldr	r2, .L17
+ 226 0024 A2FB03C2 		umull	ip, r2, r2, r3
+ 227 0028 9209     		lsrs	r2, r2, #6
+ 228 002a 4FF47A7C 		mov	ip, #1000
+ 229 002e 0CFB1233 		mls	r3, ip, r2, r3
+ 230 0032 0191     		str	r1, [sp, #4]
+ 231 0034 0090     		str	r0, [sp]
+ 232 0036 9BB2     		uxth	r3, r3
+ 233 0038 3146     		mov	r1, r6
+ 234 003a 0548     		ldr	r0, .L17+4
+ 235 003c FFF7FEFF 		bl	printf
+ 236              	.LVL16:
+  67:Core/Src/sample.c ****     }
+ 237              		.loc 1 67 7 is_stmt 1 view .LVU51
+  67:Core/Src/sample.c ****     }
+ 238              		.loc 1 67 12 is_stmt 0 view .LVU52
+ 239 0040 0136     		adds	r6, r6, #1
+ 240              	.LVL17:
+  67:Core/Src/sample.c ****     }
+ 241              		.loc 1 67 12 view .LVU53
+ARM GAS  /tmp/cc7b4L5H.s 			page 7
+
+
+ 242 0042 E3E7     		b	.L13
+ 243              	.L16:
+  70:Core/Src/sample.c ****   }
+  71:Core/Src/sample.c ****   return(0);
+ 244              		.loc 1 71 3 is_stmt 1 view .LVU54
+  72:Core/Src/sample.c **** }
+ 245              		.loc 1 72 1 is_stmt 0 view .LVU55
+ 246 0044 0020     		movs	r0, #0
+ 247 0046 02B0     		add	sp, sp, #8
+ 248              	.LCFI6:
+ 249              		.cfi_def_cfa_offset 16
+ 250              		@ sp needed
+ 251 0048 70BD     		pop	{r4, r5, r6, pc}
+ 252              	.LVL18:
+ 253              	.L18:
+ 254              		.loc 1 72 1 view .LVU56
+ 255 004a 00BF     		.align	2
+ 256              	.L17:
+ 257 004c D34D6210 		.word	274877907
+ 258 0050 00000000 		.word	.LC3
+ 259              		.cfi_endproc
+ 260              	.LFE294:
+ 262              		.section	.text.data_command,"ax",%progbits
+ 263              		.align	1
+ 264              		.global	data_command
+ 265              		.syntax unified
+ 266              		.thumb
+ 267              		.thumb_func
+ 268              		.fpu fpv4-sp-d16
+ 270              	data_command:
+ 271              	.LVL19:
+ 272              	.LFB292:
+  33:Core/Src/sample.c ****   if (args) {
+ 273              		.loc 1 33 31 is_stmt 1 view -0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 0
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+  33:Core/Src/sample.c ****   if (args) {
+ 277              		.loc 1 33 31 is_stmt 0 view .LVU58
+ 278 0000 08B5     		push	{r3, lr}
+ 279              	.LCFI7:
+ 280              		.cfi_def_cfa_offset 8
+ 281              		.cfi_offset 3, -8
+ 282              		.cfi_offset 14, -4
+  34:Core/Src/sample.c ****     printf("NOK\n\r");
+ 283              		.loc 1 34 3 is_stmt 1 view .LVU59
+  34:Core/Src/sample.c ****     printf("NOK\n\r");
+ 284              		.loc 1 34 6 is_stmt 0 view .LVU60
+ 285 0002 18B1     		cbz	r0, .L20
+  35:Core/Src/sample.c ****     return;
+ 286              		.loc 1 35 5 is_stmt 1 view .LVU61
+ 287 0004 0548     		ldr	r0, .L23
+ 288              	.LVL20:
+  35:Core/Src/sample.c ****     return;
+ 289              		.loc 1 35 5 is_stmt 0 view .LVU62
+ 290 0006 FFF7FEFF 		bl	printf
+ 291              	.LVL21:
+ARM GAS  /tmp/cc7b4L5H.s 			page 8
+
+
+  36:Core/Src/sample.c ****   }
+ 292              		.loc 1 36 5 is_stmt 1 view .LVU63
+ 293              	.L19:
+  42:Core/Src/sample.c **** 
+ 294              		.loc 1 42 1 is_stmt 0 view .LVU64
+ 295 000a 08BD     		pop	{r3, pc}
+ 296              	.LVL22:
+ 297              	.L20:
+  39:Core/Src/sample.c ****   }
+ 298              		.loc 1 39 5 is_stmt 1 view .LVU65
+ 299 000c 0448     		ldr	r0, .L23+4
+ 300              	.LVL23:
+  39:Core/Src/sample.c ****   }
+ 301              		.loc 1 39 5 is_stmt 0 view .LVU66
+ 302 000e FFF7FEFF 		bl	read_data_records
+ 303              	.LVL24:
+  41:Core/Src/sample.c **** }  
+ 304              		.loc 1 41 3 is_stmt 1 view .LVU67
+ 305 0012 0448     		ldr	r0, .L23+8
+ 306 0014 FFF7FEFF 		bl	printf
+ 307              	.LVL25:
+ 308 0018 F7E7     		b	.L19
+ 309              	.L24:
+ 310 001a 00BF     		.align	2
+ 311              	.L23:
+ 312 001c 00000000 		.word	.LC0
+ 313 0020 00000000 		.word	flash_status
+ 314 0024 1C000000 		.word	.LC2
+ 315              		.cfi_endproc
+ 316              	.LFE292:
+ 318              		.text
+ 319              	.Letext0:
+ 320              		.file 2 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/machine/_defa
+ 321              		.file 3 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/sys/_stdint.h
+ 322              		.file 4 "Core/Inc/flash.h"
+ 323              		.file 5 "/opt/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.07/arm-none-eabi/include/stdio.h"
+ 324              		.file 6 "Core/Inc/battery.h"
+ 325              		.file 7 "Core/Inc/temperature.h"
+ARM GAS  /tmp/cc7b4L5H.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sample.c
+     /tmp/cc7b4L5H.s:18     .text.sample:0000000000000000 $t
+     /tmp/cc7b4L5H.s:26     .text.sample:0000000000000000 sample
+     /tmp/cc7b4L5H.s:81     .text.sample:0000000000000034 $d
+     /tmp/cc7b4L5H.s:87     .rodata.sample_command.str1.4:0000000000000000 $d
+     /tmp/cc7b4L5H.s:97     .text.sample_command:0000000000000000 $t
+     /tmp/cc7b4L5H.s:104    .text.sample_command:0000000000000000 sample_command
+     /tmp/cc7b4L5H.s:149    .text.sample_command:0000000000000020 $d
+     /tmp/cc7b4L5H.s:156    .rodata.read_data_records.str1.4:0000000000000000 $d
+     /tmp/cc7b4L5H.s:160    .text.read_data_records:0000000000000000 $t
+     /tmp/cc7b4L5H.s:167    .text.read_data_records:0000000000000000 read_data_records
+     /tmp/cc7b4L5H.s:257    .text.read_data_records:000000000000004c $d
+     /tmp/cc7b4L5H.s:263    .text.data_command:0000000000000000 $t
+     /tmp/cc7b4L5H.s:270    .text.data_command:0000000000000000 data_command
+     /tmp/cc7b4L5H.s:312    .text.data_command:000000000000001c $d
+
+UNDEFINED SYMBOLS
+read_vrefint
+read_temp
+write_raw
+period
+flash_status
+printf
