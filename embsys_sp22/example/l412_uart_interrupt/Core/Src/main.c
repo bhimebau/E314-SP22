@@ -86,7 +86,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  init_queue(&rx_queue);
+  
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */

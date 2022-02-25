@@ -71,6 +71,8 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   uint8_t ch;
+  uint8_t buffer[10];
+  uint8_t *buff = buffer;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -103,7 +105,15 @@ int main(void)
   {
     /* USER CODE END WHILE */
     ch = getchar();
-    putchar(ch);
+    if (ch != '\r') {
+      *buff++=ch;
+    }
+    else {
+      *buff = 0;
+       printf("%s",buffer);
+       buff = buffer;
+    }
+    //    putchar('a');
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
