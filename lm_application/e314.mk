@@ -15,7 +15,7 @@ gdb: $(BUILD_DIR)/$(TARGET).elf
 #	openocd -s /l/arm2/isetools/tcl -f board/st_nucleo_l4.cfg 
 #	openocd -s ~/nobackup/openocd/0.10.0-12-20190422-2015/scripts -f board/st_nucleo_l4.cfg 
 #	openocd -s ~/install_fake/share/openocd/scripts -f board/st_nucleo_l4.cfg
-	openocd -s ~/install_fake/share/openocd/scripts -f interface/stlink.cfg -f target/stm32l4x.cfg
+	../embsys_sp22/openocd/bin/openocd -s ../embsys_sp22/openocd/share/openocd/scripts -f interface/stlink.cfg -f target/stm32l4x.cfg
 reset:
 	st-flash reset
 
